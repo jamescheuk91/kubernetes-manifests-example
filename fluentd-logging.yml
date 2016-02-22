@@ -1,0 +1,34 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: fluentd-logging
+  name: fluentd-logging
+spec:
+  selector:
+    app: fluentd-logging
+  template:
+    metadata:
+      labels:
+        app: fluentd-logging
+      name: fluentd-logging
+    spec:
+      containers:
+      - env:
+        - name: FLUENTD_ARGS
+          value: -q
+        image: quay.io/onesky/fluentd-kubernetes:0.0.2
+        name: fluentd-logging
+        volumeMounts:
+        - mountPath: /var/log
+          name: varlog
+        - mountPath: /var/lib/docker/containers
+          name: varlibdockercontainers
+          readOnly: true
+      imagePullSecrets:
+      - name: quay
+      volumes:
+      - hostPath:
+          path: /var/log
+      - hostPath:
+          path: /var/lib/docker/containers
