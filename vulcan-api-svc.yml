@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: vulcan-api
+  labels:
+    name: vulcan-api
+spec:
+  selector:
+    app: vulcan
+  ports:
+  - name: api
+    port: 8182
+    targetPort: api
+    protocol: TCP
