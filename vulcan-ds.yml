@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: vulcan
+  name: vulcan
+spec:
+  template:
+    metadata:
+      labels:
+        app: vulcan
+    spec:
+      hostNetwork: true
+      containers:
+      - name: vulcan
+        image: quay.io/timeline_labs/vulcand:latest
+        command:
+        - /vulcand
+        - -apiInterface=0.0.0.0
+        - -etcd=http://127.0.0.1:2379
+        ports:
+        - name: api
+          containerPort: 8182
+          protocol: TCP

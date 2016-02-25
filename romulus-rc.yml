@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: romulus
-          image: quay.io/timeline_labs/romulusd:latest
+          image: quay.io/timeline_labs/romulusd:c3608443
           args:
           - --kube-api=https://kubernetes.default
           - --kube-insecure
