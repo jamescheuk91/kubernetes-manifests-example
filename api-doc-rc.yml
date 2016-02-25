@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: api-doc
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: api-doc
+    spec:
+      containers:
+      - name: api-doc
+        image: schickling/swagger-ui:latest
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          limits:
+            cpu: 100m
+            memory: 50Mi
