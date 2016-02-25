@@ -1,9 +1,10 @@
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
+  name: vulcan
+  namespace: kube-system
   labels:
     app: vulcan
-  name: vulcan
 spec:
   template:
     metadata:
