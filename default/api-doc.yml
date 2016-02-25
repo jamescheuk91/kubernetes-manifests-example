@@ -33,6 +33,9 @@ spec:
       containers:
       - name: api-doc
         image: schickling/swagger-ui:latest
+        env:
+          - name: API_URL
+            value: https://s3.amazonaws.com/oneskyapp-internal/internal.yml
         ports:
         - containerPort: 80
           name: http
