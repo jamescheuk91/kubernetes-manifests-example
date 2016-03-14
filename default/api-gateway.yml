@@ -27,6 +27,8 @@ spec:
       labels:
         app: api-gateway
     spec:
+      imagePullSecrets:
+      - name: quay
       containers:
       - name: api-gateway
         image: quay.io/onesky/api-gateway:0.0.1
