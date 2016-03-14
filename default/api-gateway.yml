@@ -28,10 +28,10 @@ spec:
         app: api-gateway
     spec:
       containers:
-      - name: api-doc
+      - name: api-gateway
         image: quay.io/onesky/api-gateway:0.0.1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: http
         resources:
           limits:
