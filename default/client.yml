@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: client
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: client
+        image: quay.io/onesky/client:0.0.1
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
