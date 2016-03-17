@@ -30,6 +30,8 @@ spec:
       labels:
         app: api-gateway-tyk
     spec:
+      imagePullSecrets:
+      - name: quay
       containers:
       - name: api-gateway-tyk
         image: quay.io/onesky/api-gateway-tyk:0.0.1
