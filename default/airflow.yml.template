@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: airflow-ui
+  name: {{RC_NAME}}
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: airflow-ui
+        app: {{RC_NAME}}
     spec:
       containers:
-      - name: airflow-ui
+      - name: {{RC_NAME}}
         image: quay.io/onesky/crawler:1.2
         command: ["bin/sh"]
         args: ["-c","ln -s /dags /usr/local/airflow/dags && airflow {{AIRFLOW_COMMAND}}"]
