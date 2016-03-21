@@ -5,8 +5,6 @@ metadata:
     app: fluentd-logging
   name: fluentd-logging
 spec:
-  selector:
-    app: fluentd-logging
   template:
     metadata:
       labels:
