@@ -1,15 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: import-activemq-master
+  name: import-activemq
   labels:
-    name: import-activemq-master
+    name: import-activemq
 spec:
   selector:
     component: import-activemq-master
   ports:
   - name: broker
-    port: broker
+    port: 61616
+    targetPort: broker
+    protocol: TCP
 
 ---
 
@@ -23,15 +25,15 @@ spec:
     metadata:
       labels:
         component: import-activemq-master
-      spec:
-        containers:
-        - name: import-activemq-master
-          image: quay.io/onesky/activemq:5.13.2
-          ports:
-          - containerPort: 61616
-            name: broker
-          - containerPort: 8161
-            name: admin
+    spec:
+      containers:
+      - name: import-activemq-master
+        image: quay.io/onesky/activemq:5.13.2
+        ports:
+        - containerPort: 61616
+          name: broker
+        - containerPort: 8161
+          name: admin
 
 ---
 
@@ -45,10 +47,10 @@ spec:
     metadata:
       labels:
         component: import-activemq-slave
-      spec:
-        containers:
-        - name: import-activemq-slave
-          image: quay.io/onesky/activemq:5.13.2
-          ports:
-          - containerPort: 61616
-            name: broker
+    spec:
+      containers:
+      - name: import-activemq-slave
+        image: quay.io/onesky/activemq:5.13.2
+        ports:
+        - containerPort: 61616
+          name: broker
