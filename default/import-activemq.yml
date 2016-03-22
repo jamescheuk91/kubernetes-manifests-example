@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: import-activemq-master
+  labels:
+    name: import-activemq-master
+spec:
+  selector:
+    component: import-activemq-master
+  ports:
+  - name: broker
+    port: broker
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: import-activemq-master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: import-activemq-master
+      spec:
+        containers:
+        - name: import-activemq-master
+          image: quay.io/onesky/activemq:5.13.2
+          ports:
+          - containerPort: 61616
+            name: broker
+          - containerPort: 8161
+            name: admin
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: import-activemq-slave
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: import-activemq-slave
+      spec:
+        containers:
+        - name: import-activemq-slave
+          image: quay.io/onesky/activemq:5.13.2
+          ports:
+          - containerPort: 61616
+            name: broker
