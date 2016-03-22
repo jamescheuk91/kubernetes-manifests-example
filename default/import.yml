@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: import
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: import
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: api-gateway
+        image: quay.io/onesky/import:1.3.0
+        resources:
+          limits:
+            cpu: "1"
+            memory: 768Mi
+          requests:
+            cpu: 500m
+            memory: 512Mi
+        env:
+          - name: DEBUG_MODE
+            value: "false"
+
+          - name: LOG_LEVEL
+            value: "INFO"
+
+          - name: RABBITMQ_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
+
+          - name: ACTIVEMQ_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: import
+                key: activemq.host
+          - name: ACTIVEMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: import
+                key: activemq.username
+          - name: ACTIVEMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: import
+                key: activemq.password
+
+          - name: MYSQL_HOST:
+            valueFrom:
+              secretKeyRef:
+                name: core-mysql
+                key: host
+          - name: MYSQL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: core-mysql
+                key: username
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: core-mysql
+                key: password
+
+          - name: CORE_MONGO_URI_1
+            valueFrom:
+              secretKeyRef:
+                name: core-mongo
+                key: uri1
+          - name: CORE_MONGO_URI_2
+            valueFrom:
+              secretKeyRef:
+                name: core-mongo
+                key: uri2
+
+          - name: S3_KEY:
+            valueFrom:
+              secretKeyRef:
+                name: s3
+                key: key
+          - name: S3_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: s3
+                key: secret
+          - name: S3_BUCKET
+            value: "onesky-string-import-data"
