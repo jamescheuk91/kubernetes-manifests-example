@@ -28,7 +28,7 @@ spec:
           - name: LOG_LEVEL
             value: "INFO"
 
-          - name: RABBITMQ_HOST:
+          - name: RABBITMQ_HOST
             valueFrom:
               secretKeyRef:
                 name: rabbitmq
@@ -44,7 +44,7 @@ spec:
                 name: rabbitmq
                 key: password
 
-          - name: ACTIVEMQ_HOST:
+          - name: ACTIVEMQ_HOST
             valueFrom:
               secretKeyRef:
                 name: import
@@ -60,7 +60,7 @@ spec:
                 name: import
                 key: activemq.password
 
-          - name: MYSQL_HOST:
+          - name: MYSQL_HOST
             valueFrom:
               secretKeyRef:
                 name: core-mysql
@@ -87,7 +87,7 @@ spec:
                 name: core-mongo
                 key: uri2
 
-          - name: S3_KEY:
+          - name: S3_KEY
             valueFrom:
               secretKeyRef:
                 name: s3
