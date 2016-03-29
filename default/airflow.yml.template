@@ -34,12 +34,27 @@ spec:
           value: "5"
         - name: AIRFLOW__CORE__LOAD_EXAMPLES
           value: "False"
+        - name: AIRFLOW__CORE__REMOTE_LOG_CONN_ID
+          value: "S3_LOG"
+        - name: AIRFLOW__CORE__REMOTE_BASE_LOG_FOLDER
+          value: "s3://oneskyapp.mobile-intel/postmon/crawler_logs"
         - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
           value: TBC
+        - name: AIRFLOW__CORE__FERNET_KEY
+          valueFrom:
+          secretKeyRef:
+            name: airflow
+            key: fernet-key
         - name: AIRFLOW__CELERY__BROKER_URL
-          value: TBC
+          valueFrom:
+            secretKeyRef:
+              name: airflow
+              key: celery-url
         - name: AIRFLOW__CELERY__CELERY_RESULT_BACKEND
-          value: TBC
+          valueFrom:
+            secretKeyRef:
+              name: airflow
+              key: celery-url
         - name: PYTHONPATH
           value: /usr/src/app/mobilestore:/dags
         ports:
