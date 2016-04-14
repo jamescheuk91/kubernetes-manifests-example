@@ -15,9 +15,9 @@ Stores manifests for OneSky Kubernetes cluster
   - Ensure a certain number of `Pods` is running at all times
 
 - `Service`
-  - TCP/UDP Proxy to Replication Controllers
-  - Can contain 1 or more Replication Controllers
-  - Select by labels
+  - TCP / UDP Proxy to `Replication Controllers`
+  - Can contain 1 or more `Replication Controllers`
+  - Select by `Label`
 
 
 # Best Practices
