@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: client-web-portal-api
   labels:
-    name: api-gateway-tyk
+    name: client-web-portal-api
     http/proxy: enable
   annotations:
     http/host: api-cwp.1sky.io
@@ -24,7 +24,7 @@ kind: Service
 metadata:
   name: internal-portal-api
   labels:
-    name: api-gateway-tyk
+    name: internal-portal-api
     http/proxy: enable
   annotations:
     http/host: api-internal.1sky.io
