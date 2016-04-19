@@ -19,8 +19,5 @@ spec:
           requests:
             cpu: 200m
             memory: 256Mi
-        env:
-        - name: ALLOCATION_ENV
-          value: production
       imagePullSecrets:
       - name: quay
