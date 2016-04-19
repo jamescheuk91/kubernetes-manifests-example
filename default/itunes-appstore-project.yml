@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: itunes-appstore-project
+spec:
+  selector:
+    app: itunes-appstore-project
+  ports:
+  - name: rpc
+    port: 50051
+    targetPort: rpc
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: itunes-appstore-project
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: itunes-appstore-project
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: itunes-appstore-project
+        image: quay.io/onesky/itunes-appstore-project:0.0.1-alpha2
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
