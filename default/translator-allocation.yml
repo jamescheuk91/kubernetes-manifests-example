@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: translator-allocation
+spec:
+  selector:
+    app: translator-allocation
+  ports:
+  - name: rpc
+    port: 50051
+    targetPort: rpc
+    protocol: TCP
+
+---
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: translator-allocation
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: translator-allocation
+    spec:
+      containers:
+      - name: translator-allocation
+        image: quay.io/onesky/translator-allocation:0.0.1-alpha1
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 384Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+      imagePullSecrets:
+      - name: quay
