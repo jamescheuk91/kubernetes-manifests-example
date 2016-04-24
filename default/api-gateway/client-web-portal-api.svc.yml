@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-web-portal-api
+  labels:
+    name: client-web-portal-api
+    http/proxy: enable
+  annotations:
+    http/host: api-cwp.1sky.io
+    http/max_resp_size: 20Mi
+spec:
+  selector:
+    app: api-gateway-tyk
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: itunes-appstore-project
+spec:
+  selector:
+    app: itunes-appstore-project
+  ports:
+  - name: rpc
+    port: 50051
+    targetPort: rpc
+    protocol: TCP
