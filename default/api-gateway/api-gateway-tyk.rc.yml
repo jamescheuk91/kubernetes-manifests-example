@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: api-gateway-tyk
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: api-gateway-tyk
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: api-gateway-tyk
+        image: quay.io/onesky/api-gateway-tyk:0.1.0
+        ports:
+        - containerPort: 8080
+          name: http
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        env:
+          - name: REDIS_HOST
+            value: "api-gateway-tyk-redis.default.svc.cluster.local"
