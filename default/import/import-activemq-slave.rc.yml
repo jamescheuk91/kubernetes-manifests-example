@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: import-activemq-slave
-        image: quay.io/onesky/activemq:mysql-92d6ff0
+        image: quay.io/onesky/activemq:mysql-ca7c063
         resources:
           limits:
             cpu: 300m
