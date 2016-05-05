@@ -13,7 +13,7 @@ spec:
       - name: quay
       containers:
       - name: api-gateway-tyk
-        image: quay.io/onesky/api-gateway-tyk:0.1.0
+        image: quay.io/onesky/api-gateway-tyk:0.2.0
         ports:
         - containerPort: 8080
           name: http
@@ -22,5 +22,10 @@ spec:
             cpu: 200m
             memory: 256Mi
         env:
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: tyk
+                key: secret
           - name: REDIS_HOST
             value: "api-gateway-tyk-redis.default.svc.cluster.local"
