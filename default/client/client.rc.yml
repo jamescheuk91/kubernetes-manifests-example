@@ -14,6 +14,9 @@ spec:
       containers:
       - name: client
         image: quay.io/onesky/client:c0bf265c8c7fe5d6d2ba6af19f63d8579eced3d2-SNAPSHOT
+        ports:
+        - containerPort: 50051
+          name: rpc
         resources:
           limits:
             cpu: 400m
