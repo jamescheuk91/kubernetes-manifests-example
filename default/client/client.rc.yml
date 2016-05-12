@@ -13,7 +13,7 @@ spec:
       - name: quay
       containers:
       - name: client
-        image: quay.io/onesky/client:c0bf265c8c7fe5d6d2ba6af19f63d8579eced3d2-SNAPSHOT
+        image: quay.io/onesky/client:0.1.0-beta2
         ports:
         - containerPort: 50051
           name: rpc
@@ -24,3 +24,27 @@ spec:
           requests:
             cpu: 200m
             memory: 384Mi
+          env:
+            - name: RABBITMQ_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: host
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: username
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: password
+
+            - name: TYK_HOST
+              value: client-web-portal-api.default.svc.cluster.local
+            - name: TYK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: tyk
+                  key: secret
