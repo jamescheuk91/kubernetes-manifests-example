@@ -13,7 +13,10 @@ spec:
       - name: quay
       containers:
       - name: client
-        image: quay.io/onesky/client:c0bf265c8c7fe5d6d2ba6af19f63d8579eced3d2-SNAPSHOT
+        image: quay.io/onesky/client:0.1.0
+        ports:
+        - containerPort: 50051
+          name: rpc
         resources:
           limits:
             cpu: 400m
@@ -21,3 +24,59 @@ spec:
           requests:
             cpu: 200m
             memory: 384Mi
+        env:
+          - name: POSTGRE_HOST
+            valueFrom:
+              secretKeyRef:
+                name: client
+                key: postgre.host
+          - name: POSTGRE_PORT
+            valueFrom:
+              secretKeyRef:
+                name: client
+                key: postgre.port
+          - name: POSTGRE_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: client
+                key: postgre.username
+          - name: POSTGRE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: client
+                key: postgre.password
+
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
+
+          - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
+
+          - name: TYK_HOST
+            value: client-web-portal-api.default.svc.cluster.local
+          - name: TYK_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: tyk
+                key: secret

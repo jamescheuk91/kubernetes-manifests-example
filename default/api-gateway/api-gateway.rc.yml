@@ -3,7 +3,7 @@ kind: ReplicationController
 metadata:
   name: api-gateway
 spec:
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
@@ -13,7 +13,7 @@ spec:
       - name: quay
       containers:
       - name: api-gateway
-        image: quay.io/onesky/api-gateway:0.1.0
+        image: quay.io/onesky/api-gateway:0.3.0
         ports:
         - containerPort: 8080
           name: http
@@ -27,20 +27,7 @@ spec:
         env:
           - name: LOG_LEVEL
             value: "INFO"
+          - name: CLIENT_SERVICE_ADDRESS
+            value: "client.default.svc.cluster.local"
           - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
             value: "itunes-appstore-project.default.svc.cluster.local"
-          - name: RABBITMQ_HOST
-            valueFrom:
-              secretKeyRef:
-                name: rabbitmq
-                key: host
-          - name: RABBITMQ_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: rabbitmq
-                key: username
-          - name: RABBITMQ_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: rabbitmq
-                key: password
