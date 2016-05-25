@@ -13,7 +13,7 @@ spec:
       - name: quay
       containers:
       - name: api-gateway
-        image: quay.io/onesky/api-gateway:0.3.0
+        image: quay.io/onesky/api-gateway:0.7.0
         ports:
         - containerPort: 8080
           name: http
@@ -31,3 +31,8 @@ spec:
             value: "client.default.svc.cluster.local"
           - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
             value: "itunes-appstore-project.default.svc.cluster.local"
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: jwt.secret
