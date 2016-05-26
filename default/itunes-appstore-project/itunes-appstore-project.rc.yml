@@ -13,7 +13,7 @@ spec:
       - name: quay
       containers:
       - name: itunes-appstore-project
-        image: quay.io/onesky/itunes-appstore-project:0.1.0-alpha7
+        image: quay.io/onesky/itunes-appstore-project:0.2.0-alpha1
         ports:
         - containerPort: 50051
           name: rpc
@@ -45,3 +45,18 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: postgres.password
+          - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
