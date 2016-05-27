@@ -22,5 +22,49 @@ spec:
         env:
         - name: ALLOCATION_ENV
           value: production
+        - name: DEBUG_MODE
+          value: info
+        - name: LOG_LEVEL
+          value: info
+        - name: RABBITMQ_HOST
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: host
+        - name: RABBITMQ_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: username
+        - name: RABBITMQ_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq
+              key: password
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: postgres.host
+        - name: POSTGRES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: postgres.port
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: postgres.username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: postgres.password
+        - name: POSTGRES_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: postgres.database
       imagePullSecrets:
       - name: quay
