@@ -25,6 +25,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+          - name: ORDERING_SERVICE_ADDRESS
+            value: "ordering.default.svc.cluster.local"
           - name: POSTGRES_HOST
             valueFrom:
               secretKeyRef:
