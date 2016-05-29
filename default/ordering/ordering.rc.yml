@@ -36,6 +36,6 @@ spec:
               name: ordering
               key: postgres.password
         - name: POSTGRES_PORT
-          value: 5432
+          value: "5432"
       imagePullSecrets:
       - name: quay
