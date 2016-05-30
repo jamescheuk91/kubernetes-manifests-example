@@ -11,7 +11,10 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: quay.io/onesky/ordering:0.0.1-alpha3
+        image: quay.io/onesky/ordering:0.1.0
+        ports:
+        - containerPort: 50051
+          name: rpc
         resources:
           limits:
             cpu: 400m
