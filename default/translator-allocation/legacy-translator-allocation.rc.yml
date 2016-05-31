@@ -12,6 +12,9 @@ spec:
       containers:
       - name: legacy-translator-allocation
         image: quay.io/onesky/legacy-translator-allocation:0.10.0
+        ports:
+        - containerPort: 50051
+          name: rpc
         resources:
           limits:
             cpu: 400m
