@@ -23,6 +23,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+        - name: TRANSLATOR_ALLOCATION_ADDRESS
+          value: "legacy-translator-allocation.default.svc.cluster.local"
         - name: POSTGRES_HOST
           valueFrom:
             secretKeyRef:
