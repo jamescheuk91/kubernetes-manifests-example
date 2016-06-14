@@ -57,5 +57,10 @@ spec:
             secretKeyRef:
               name: rabbitmq
               key: password
+        - name: STRIPE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: stripe
+              key: test-api-key
       imagePullSecrets:
       - name: quay
