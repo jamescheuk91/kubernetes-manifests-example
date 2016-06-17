@@ -35,7 +35,7 @@ if [[ ! -f "${1}" ]]; then
     exit 1
 fi
 
-template="### AUTO GEN, do not modify ###\n${1}"
+template="${1}"
 
 if [ "$#" -ne 0 ]; then
     while [ "$#" -gt 0 ]
