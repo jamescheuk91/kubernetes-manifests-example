@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  namespace: {{ENV}}
   name: client
 spec:
   replicas: 2
@@ -63,7 +64,7 @@ spec:
                 key: password
 
           - name: TYK_HOST
-            value: client-web-portal-api.default.svc.cluster.local
+            value: client-web-portal-api.{{ENV}}.svc.cluster.local
           - name: TYK_SECRET
             valueFrom:
               secretKeyRef:
