@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ENV}}
   name: internal-portal-api
   labels:
     name: internal-portal-api

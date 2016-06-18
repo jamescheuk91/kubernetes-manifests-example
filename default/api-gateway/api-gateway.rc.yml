@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  namespace: {{ENV}}
   name: api-gateway
 spec:
   replicas: 2
@@ -28,11 +29,11 @@ spec:
           - name: LOG_LEVEL
             value: "INFO"
           - name: CLIENT_SERVICE_ADDRESS
-            value: "client.default.svc.cluster.local"
+            value: "client.{{ENV}}.svc.cluster.local"
           - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
-            value: "itunes-appstore-project.default.svc.cluster.local"
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: ORDERING_SERVICE_ADDRESS
-            value: "ordering.default.svc.cluster.local"
+            value: "ordering.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
             valueFrom:
               secretKeyRef:

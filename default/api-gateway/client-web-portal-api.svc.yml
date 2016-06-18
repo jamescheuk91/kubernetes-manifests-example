@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
+  namespace: {{ENV}}
   name: client-web-portal-api
   labels:
     name: client-web-portal-api
