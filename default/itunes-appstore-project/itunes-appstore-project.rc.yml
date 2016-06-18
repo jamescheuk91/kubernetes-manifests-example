@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  namespace: {{ENV}}
   name: itunes-appstore-project
 spec:
   replicas: 2
@@ -26,7 +27,7 @@ spec:
             memory: 384Mi
         env:
           - name: ORDERING_SERVICE_ADDRESS
-            value: "ordering.default.svc.cluster.local"
+            value: "ordering.{{ENV}}.svc.cluster.local"
           - name: POSTGRES_HOST
             valueFrom:
               secretKeyRef:
