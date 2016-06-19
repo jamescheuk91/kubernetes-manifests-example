@@ -25,3 +25,8 @@ Stores manifests for OneSky Kubernetes cluster
   - Allow others to discover your app even if it is down
   - Once `Pod` is available others can immediately connect to your app
   - Also allow self discovering infra like Cassandra, Redis, etc
+
+# Config files
+- use tools/templater.sh to generate real kubernetes config yml files
+- {{ENV}} - the namespace of prod, stag, dev environment
+  - the service address (service.{{ENV}}.svc.cluster.local) will follow this convertion 
