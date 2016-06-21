@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: client
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}} 
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
       - name: quay
       containers:
       - name: client
-        image: quay.io/onesky/client:0.1.0
+        image: quay.io/onesky/client:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
           name: rpc
@@ -31,6 +31,11 @@ spec:
               secretKeyRef:
                 name: client
                 key: postgre.host
+          - name: POSTGRE_DB
+            valueFrom:
+              secretKeyRef:
+                name: client
+                key: postgre.db
           - name: POSTGRE_PORT
             valueFrom:
               secretKeyRef:
