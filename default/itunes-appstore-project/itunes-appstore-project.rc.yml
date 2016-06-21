@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: itunes-appstore-project
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}} 
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
       - name: quay
       containers:
       - name: itunes-appstore-project
-        image: quay.io/onesky/itunes-appstore-project:0.2.0-alpha1
+        image: quay.io/onesky/itunes-appstore-project:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
           name: rpc
@@ -33,6 +33,11 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: postgres.host
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: postgres.db
           - name: POSTGRES_PORT
             valueFrom:
               secretKeyRef:
