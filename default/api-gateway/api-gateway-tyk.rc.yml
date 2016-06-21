@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: api-gateway-tyk
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}}
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
       - name: quay
       containers:
       - name: api-gateway-tyk
-        image: quay.io/onesky/api-gateway-tyk:0.6.0
+        image: quay.io/onesky/api-gateway-tyk:{{IMG_VERSION}}
         ports:
         - containerPort: 8080
           name: http
