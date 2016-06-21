@@ -33,11 +33,11 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: postgres.host
-          - name: POSTGRES_DB
+          - name: POSTGRES_DATABASE
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
-                key: postgres.db
+                key: postgres.database
           - name: POSTGRES_PORT
             valueFrom:
               secretKeyRef:

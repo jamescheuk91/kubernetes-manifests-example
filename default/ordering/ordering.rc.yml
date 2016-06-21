@@ -31,11 +31,11 @@ spec:
             secretKeyRef:
               name: ordering
               key: postgres.host
-        - name: POSTGRES_DB
+        - name: POSTGRES_DATABASE
           valueFrom:
             secretKeyRef:
               name: ordering
-              key: postgres.db
+              key: postgres.database
         - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
