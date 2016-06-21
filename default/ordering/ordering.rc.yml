@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: ordering
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}}
   template:
     metadata:
       labels:
@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: quay.io/onesky/ordering:0.1.0
+        image: quay.io/onesky/ordering:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
           name: rpc
@@ -31,6 +31,11 @@ spec:
             secretKeyRef:
               name: ordering
               key: postgres.host
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: ordering
+              key: postgres.db
         - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
