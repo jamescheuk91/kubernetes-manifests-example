@@ -1,9 +1,10 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  namespace: {{ENV}}
   name: legacy-translator-allocation
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}}
   template:
     metadata:
       labels:
@@ -11,7 +12,7 @@ spec:
     spec:
       containers:
       - name: legacy-translator-allocation
-        image: quay.io/onesky/legacy-translator-allocation:0.10.0
+        image: quay.io/onesky/legacy-translator-allocation:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
           name: rpc
