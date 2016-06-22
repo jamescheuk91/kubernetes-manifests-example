@@ -31,11 +31,11 @@ spec:
               secretKeyRef:
                 name: client
                 key: postgre.host
-          - name: POSTGRE_DB
+          - name: POSTGRE_DATABASE
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.db
+                key: postgre.database
           - name: POSTGRE_PORT
             valueFrom:
               secretKeyRef:
