@@ -127,11 +127,13 @@ if [[ "$print_only" == "true" ]]; then
 fi
 
 # Replace all {{VAR}} by $VAR value
+VAR_ERROR='no'
 for var in $vars; do
     value=`var_value $var`
     if [[ -z "$value" ]]; then
         if [ $silent == "false" ]; then
-            echo "Warning: $var is not defined and no default is set, replacing by empty" >&2
+            echo "Error: $var is not defined and no default is set" >&2
+            VAR_ERROR='yes'
         fi
     fi
 
@@ -139,6 +141,11 @@ for var in $vars; do
     value=$(echo "$value" | sed 's/\//\\\//g');
     replaces="-e 's/{{$var}}/${value}/g' $replaces"
 done
+
+# Exit if any $VAR missing
+if [ "$VAR_ERROR" == 'yes' ]; then
+    exit 1
+fi
 
 escaped_template_path=$(echo $template | sed 's/ /\\ /g')
 eval sed $replaces "$escaped_template_path"
