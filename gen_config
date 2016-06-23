@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Usage: ./gen_config ENV TEMPLATE
+
+export ENV=$1
+
+if [ "$ENV" == "prod" ]; then
+    export ENV=default #use old default as workaround
+    echo "=== ENV=${ENV} ===" >&2
+    export ENDPOINT_CWP=api-cwp.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=api-internal.1sky.io
+elif [ "$ENV" == "stag" ]; then
+    echo "=== ENV=${ENV} ===" >&2
+    export ENDPOINT_CWP=stag-api-cwp.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=stag-api-internal.1sky.io
+elif [ "$ENV" == "dev" ]; then
+    echo "=== ENV=${ENV} ===" >&2
+    export ENDPOINT_CWP=dev-api-cwp.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
+else
+    echo '$ENV must be prod|stag|dev!'
+    exit 1
+fi
+
+./tools/templater.sh $2
