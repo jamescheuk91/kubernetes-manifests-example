@@ -7,7 +7,7 @@ metadata:
     name: client-web-portal-api
     http/proxy: enable
   annotations:
-    http/host: api-cwp.1sky.io
+    http/host: {{ENDPOINT_CWP}}
     http/max_resp_size: 20Mi
 spec:
   selector:

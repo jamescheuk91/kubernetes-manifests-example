@@ -7,7 +7,7 @@ metadata:
     name: internal-portal-api
     http/proxy: enable
   annotations:
-    http/host: api-internal.1sky.io
+    http/host: {{ENDPOINT_INTERNAL_PORTAL}}
     http/max_resp_size: 20Mi
 spec:
   selector:
