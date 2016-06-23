@@ -11,10 +11,12 @@ if [ "$ENV" == "prod" ]; then
     export ENDPOINT_INTERNAL_PORTAL=api-internal.1sky.io
 elif [ "$ENV" == "stag" ]; then
     echo "=== ENV=${ENV} ===" >&2
+    export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=stag-api-cwp.1sky.io
     export ENDPOINT_INTERNAL_PORTAL=stag-api-internal.1sky.io
 elif [ "$ENV" == "dev" ]; then
     echo "=== ENV=${ENV} ===" >&2
+    export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=dev-api-cwp.1sky.io
     export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
 else
