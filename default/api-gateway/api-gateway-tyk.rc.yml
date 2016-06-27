@@ -35,3 +35,9 @@ spec:
               secretKeyRef:
                 name: client-web-portal
                 key: jwt.secret
+          - name: ENDPOINT_API_GATEWAY 
+            value: "api-gateway.{{ENV}}.svc.cluster.local"
+          - name: ENDPOINT_CWP
+            value: "{{ENDPOINT_CWP}}" 
+          - name: ENDPOINT_INTERNAL_PORTAL 
+            value: "{{ENDPOINT_INTERNAL_PORTAL}}"
