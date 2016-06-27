@@ -30,27 +30,27 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.host
+                key: pgsql.host
           - name: POSTGRE_DATABASE
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.database
+                key: pgsql.database
           - name: POSTGRE_PORT
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.port
+                key: pgsql.port
           - name: POSTGRE_USERNAME
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.username
+                key: pgsql.username
           - name: POSTGRE_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: client
-                key: postgre.password
+                key: pgsql.password
 
           - name: RABBITMQ_HOST
             valueFrom:
