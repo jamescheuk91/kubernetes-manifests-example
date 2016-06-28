@@ -28,6 +28,8 @@ spec:
         env:
           - name: ORDERING_SERVICE_ADDRESS
             value: "ordering.{{ENV}}.svc.cluster.local"
+          - name: ITUNES_TRANSLATION_ADDRESS
+            value: "itunes-translation.{{ENV}}.svc.cluster.local"
           - name: POSTGRES_HOST
             valueFrom:
               secretKeyRef:
