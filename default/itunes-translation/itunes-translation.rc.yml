@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: itunes-translation
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: itunes-translation
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: itunes-appstore-project
+        image: quay.io/onesky/itunes-translation:0.1.0-alpha1
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: ORDERING_SERVICE_ADDRESS
+            value: "ordering.default.svc.cluster.local"
+          - name: ITUNES_TRANSLATION_ADDRESS
+            value: "itunes-translation.default.svc.cluster.local"
+          - name: PGSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.host
+          - name: PGSQL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.password
+          - name: PGSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.database
+          - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
