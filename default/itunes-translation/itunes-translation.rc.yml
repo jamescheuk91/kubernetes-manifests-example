@@ -54,6 +54,31 @@ spec:
               secretKeyRef:
                 name: itunes-translation
                 key: pgsql.database
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.api-key
+          - name: SENDGRID_TEMPLATE_ID
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.template-id
+          - name: SENDGRID_TRANSLATION_FROM_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-from-email
+          - name: SENDGRID_TRANSLATION_BCC_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-bcc-email
+          - name: SENDGRID_TRANSLATION_TO_EMAIL_TEMP
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-to-email-temp
           - name: RABBITMQ_HOST
             valueFrom:
               secretKeyRef:
