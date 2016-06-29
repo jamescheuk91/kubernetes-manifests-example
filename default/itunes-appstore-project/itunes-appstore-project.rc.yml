@@ -30,27 +30,27 @@ spec:
             value: "ordering.{{ENV}}.svc.cluster.local"
           - name: ITUNES_TRANSLATION_ADDRESS
             value: "itunes-translation.{{ENV}}.svc.cluster.local"
-          - name: POSTGRES_HOST
+          - name: PGSQL_HOST
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: pgsql.host
-          - name: POSTGRES_DATABASE
+          - name: PGSQL_DATABASE
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: pgsql.database
-          - name: POSTGRES_PORT
+          - name: PGSQL_PORT
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: pgsql.port
-          - name: POSTGRES_USERNAME
+          - name: PGSQL_USERNAME
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: pgsql.username
-          - name: POSTGRES_PASSWORD
+          - name: PGSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
