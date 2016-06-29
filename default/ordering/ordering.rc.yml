@@ -30,22 +30,22 @@ spec:
           valueFrom:
             secretKeyRef:
               name: ordering
-              key: postgres.host
+              key: pgsql.host
         - name: POSTGRES_DATABASE
           valueFrom:
             secretKeyRef:
               name: ordering
-              key: postgres.database
+              key: pgsql.database
         - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
               name: ordering
-              key: postgres.username
+              key: pgsql.username
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: ordering
-              key: postgres.password
+              key: pgsql.password
         - name: POSTGRES_PORT
           value: "5432"
         - name: RABBITMQ_HOST

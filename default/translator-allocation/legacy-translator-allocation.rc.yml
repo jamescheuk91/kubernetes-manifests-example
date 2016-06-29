@@ -49,26 +49,26 @@ spec:
           valueFrom:
             secretKeyRef:
               name: legacy-translator-allocation
-              key: postgres.host
+              key: pgsql.host
         - name: POSTGRES_PORT
           valueFrom:
             secretKeyRef:
               name: legacy-translator-allocation
-              key: postgres.port
+              key: pgsql.port
         - name: POSTGRES_USERNAME
           valueFrom:
             secretKeyRef:
               name: legacy-translator-allocation
-              key: postgres.username
+              key: pgsql.username
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: legacy-translator-allocation
-              key: postgres.password
+              key: pgsql.password
         - name: POSTGRES_DATABASE
           valueFrom:
             secretKeyRef:
               name: legacy-translator-allocation
-              key: postgres.database
+              key: pgsql.database
       imagePullSecrets:
       - name: quay
