@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: tback-api
+  labels:
+    name: tback-api
+    http/proxy: enable
+  annotations:
+    http/host: {{ENDPOINT_TBACK_API}}
+    http/max_resp_size: 20Mi
+spec:
+  selector:
+    app: itunes-translation
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+    protocol: TCP
