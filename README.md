@@ -27,6 +27,109 @@ Stores manifests for OneSky Kubernetes cluster
   - Also allow self discovering infra like Cassandra, Redis, etc
 
 # Config files
-- use tools/templater.sh to generate real kubernetes config yml files
+- use ./gen\_config to generate real kubernetes config yml files
 - {{ENV}} - the namespace of prod, stag, dev environment
   - the service address (service.{{ENV}}.svc.cluster.local) will follow this convertion 
+- Example:
+ ```
+$ IMG_VERSION=0.1.2 ./gen_config dev ./default/itunes-translation/itunes-translation.rc.yml
+=== ENV=dev ===
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  namespace: dev
+  name: itunes-translation
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: itunes-translation
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: itunes-appstore-project
+        image: quay.io/onesky/itunes-translation:0.1.2
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: ORDERING_SERVICE_ADDRESS
+            value: "ordering.dev.svc.cluster.local"
+          - name: ITUNES_TRANSLATION_ADDRESS
+            value: "itunes-translation.dev.svc.cluster.local"
+          - name: PGSQL_HOST
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.host
+          - name: PGSQL_PORT
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.password
+          - name: PGSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: pgsql.database
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.api-key
+          - name: SENDGRID_TEMPLATE_ID
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.template-id
+          - name: SENDGRID_TRANSLATION_FROM_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-from-email
+          - name: SENDGRID_TRANSLATION_BCC_EMAIL
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-bcc-email
+          - name: SENDGRID_TRANSLATION_TO_EMAIL_TEMP
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: sendgrid.translation-to-email-temp
+          - name: RABBITMQ_HOST
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbitmq
+                key: password
+
+ ```
