@@ -82,6 +82,18 @@ spec:
               secretKeyRef:
                 name: itunes-translation
                 key: sendgrid.translation-to-email-temp
+          - name: WEBHOOK_HOST 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: webhook.host 
+          - name: WEBHOOK_PORT
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: webhook.port
+
+
           - name: RABBITMQ_HOST
             valueFrom:
               secretKeyRef:
