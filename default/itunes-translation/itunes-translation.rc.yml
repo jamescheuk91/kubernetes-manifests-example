@@ -92,6 +92,17 @@ spec:
               secretKeyRef:
                 name: itunes-translation
                 key: webhook.port
+          - name: WEBHOOK_ACCEPT_TASK_DOMAIN 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: webhook.accept-task-domain 
+          - name: TRANSLATION_TOKEN_SECRET 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-translation
+                key: translation-token-secret 
+
 
 
           - name: RABBITMQ_HOST

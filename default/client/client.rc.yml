@@ -26,27 +26,27 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
-          - name: POSTGRE_HOST
+          - name: PGSQL_HOST
             valueFrom:
               secretKeyRef:
                 name: client
                 key: pgsql.host
-          - name: POSTGRE_DATABASE
+          - name: PGSQL_DATABASE
             valueFrom:
               secretKeyRef:
                 name: client
                 key: pgsql.database
-          - name: POSTGRE_PORT
+          - name: PGSQL_PORT
             valueFrom:
               secretKeyRef:
                 name: client
                 key: pgsql.port
-          - name: POSTGRE_USERNAME
+          - name: PGSQL_USERNAME
             valueFrom:
               secretKeyRef:
                 name: client
                 key: pgsql.username
-          - name: POSTGRE_PASSWORD
+          - name: PGSQL_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: client
