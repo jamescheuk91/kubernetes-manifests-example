@@ -26,27 +26,27 @@ spec:
         env:
         - name: TRANSLATOR_ALLOCATION_ADDRESS
           value: "legacy-ta.{{ENV}}.svc.cluster.local"
-        - name: POSTGRES_HOST
+        - name: PGSQL_HOST
           valueFrom:
             secretKeyRef:
               name: ordering
               key: pgsql.host
-        - name: POSTGRES_DATABASE
+        - name: PGSQL_DATABASE
           valueFrom:
             secretKeyRef:
               name: ordering
               key: pgsql.database
-        - name: POSTGRES_USERNAME
+        - name: PGSQL_USERNAME
           valueFrom:
             secretKeyRef:
               name: ordering
               key: pgsql.username
-        - name: POSTGRES_PASSWORD
+        - name: PGSQL_PASSWORD
           valueFrom:
             secretKeyRef:
               name: ordering
               key: pgsql.password
-        - name: POSTGRES_PORT
+        - name: PGSQL_PORT
           value: "5432"
         - name: RABBITMQ_HOST
           valueFrom:
