@@ -13,7 +13,7 @@ spec:
       imagePullSecrets:
       - name: quay
       containers:
-      - name: itunes-appstore-project
+      - name: itunes-translation
         image: quay.io/onesky/itunes-translation:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
