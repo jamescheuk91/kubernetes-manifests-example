@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: import
 spec:
-  replicas: 2
+  replicas: {{REPLICAS}} 
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
       - name: quay
       containers:
       - name: import
-        image: quay.io/onesky/import:1.3.0-beta2
+        image: quay.io/onesky/import:{{IMG_VERSION}}
         resources:
           limits:
             cpu: "1"
