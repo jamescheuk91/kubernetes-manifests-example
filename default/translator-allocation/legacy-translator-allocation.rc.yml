@@ -70,5 +70,32 @@ spec:
             secretKeyRef:
               name: legacy-translator-allocation
               key: pgsql.database
+
+        - name: PGSQL_HOST
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: pgsql.host
+        - name: PGSQL_PORT
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: pgsql.port
+        - name: PGSQL_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: pgsql.username
+        - name: PGSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: pgsql.password
+        - name: PGSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: legacy-translator-allocation
+              key: pgsql.database
+
       imagePullSecrets:
       - name: quay
