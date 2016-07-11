@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ReplicationController 
+metadata:
+  namespace: {{ENV}}
+  name: user-journey 
+spec:
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: user-journey 
+    spec:
+      containers:
+      - name: user-journey 
+        image: quay.io/onesky/user-journey:{{IMG_VERSION}}
+        imagePullPolicy: Always
+        #command: ["/usr/bin/php","/opt/user-journey/bin/console","server:run","0.0.0.0:8000"]
+        command: ["/bin/bash", "/etc/user-journey/config/run.sh"]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/user-journey/config
+        ports:
+        - containerPort: 8000
+          name: http 
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+      volumes:
+      - name: config-volume 
+        configMap:
+          name: user-journey 
+          items:
+          - key: config.file 
+            path: parameters.yml
+          - key: run.file 
+            path: run.sh 
+      imagePullSecrets:
+      - name: quay
