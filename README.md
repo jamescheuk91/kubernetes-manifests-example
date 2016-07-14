@@ -13,8 +13,10 @@ Stores manifests for OneSky Kubernetes cluster
 
 - `Replication Controller` (aka 'rc')
   - Ensure a certain number of `Pods` is running at all times
+  - **DO NOT USE for new project, we are moving to Deployment**
 
 - `Deployment`
+- - **USE ME! USE ME! USE ME!**
   - We are moving from rc to Deployment, this can replace rc and have better automation
 
 - `Service`
