@@ -8,7 +8,7 @@ metadata:
     http/proxy: enable
   annotations:
     http/host: {{ENDPOINT_CWP}} # And here
-    http/auth: 1sky:passwordTBC # For internal, actual password will be overriden at live
+    # http/auth: 1sky:passwordTBC # For internal, actual password will be overriden at live
 spec:
   ports:
     # the port that this service should serve on

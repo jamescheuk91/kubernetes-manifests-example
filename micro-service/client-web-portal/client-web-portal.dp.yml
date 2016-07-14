@@ -1,5 +1,5 @@
 apiVersion: extensions/v1beta1
-kind: Deployment 
+kind: Deployment
 metadata:
   namespace: {{ENV}}
   name: client-web-portal
@@ -17,3 +17,53 @@ spec:
         image: quay.io/onesky/client-web-portal:{{IMG_VERSION}}
         ports:
         - containerPort: 8080
+          name: http
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+        env:
+          - name: ENV
+            value: "{{ENV}}"
+          - name: API_ENDPOINT
+            value: "{{ENDPOINT_CWP_API}}"
+          - name: API_VERSION
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: api.version
+          - name: LOGENTRIES_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: logentries.token
+          - name: RAYGUN_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: raygun.token
+          - name: STRIPE_PUBLISHABLE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: stripe.publishable.key
+          - name: ZENDESK
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: zendesk
+          - name: INTERCOM_APP_ID
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: intercom.app.id
+          - name: GA
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: ga
+          - name: HEAP
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: heap
