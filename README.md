@@ -11,8 +11,11 @@ Stores manifests for OneSky Kubernetes cluster
     - Multiple container pod
       - Apache + Datadog agent for Apache
 
-- `Replication Controller`
+- `Replication Controller` (aka 'rc')
   - Ensure a certain number of `Pods` is running at all times
+
+- `Deployment`
+  - We are moving from rc to Deployment, this can replace rc and have better automation
 
 - `Service`
   - TCP / UDP Proxy to `Pod`
