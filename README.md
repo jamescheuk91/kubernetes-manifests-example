@@ -35,6 +35,8 @@ Stores manifests for OneSky Kubernetes cluster
 - use ./gen\_config to generate real kubernetes config yml files
 - {{ENV}} - the namespace of prod, stag, dev environment
   - the service address (service.{{ENV}}.svc.cluster.local) will follow this convertion 
+- {{IMG_VERSION}} - the docker image tag of the deployment/rc
+- {{REPLICAS}} - number of pods of the deployment/rc, hardcode to 1 for dev/stag
 - Example:
  ```
 $ IMG_VERSION=0.1.2 ./gen_config dev ./default/itunes-translation/itunes-translation.rc.yml
