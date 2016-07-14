@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment 
+metadata:
+  namespace: {{ENV}}
+  name: client-web-portal
+spec:
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: client-web-portal
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: client-web-portal
+        image: quay.io/onesky/client-web-portal:{{IMG_VERSION}}
+        ports:
+        - containerPort: 8080
