@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    http/auth: 1sky:passwordTBC
+    http/host: internal-jobserver.1sky.io
+  labels:
+    app: airflow-ui-service
+    http/proxy: enable
+  name: airflow-ui-service
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: airflow-ui
+  sessionAffinity: None
+  type: ClusterIP
