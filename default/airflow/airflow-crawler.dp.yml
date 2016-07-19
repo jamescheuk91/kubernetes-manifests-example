@@ -1,0 +1,106 @@
+apiVersion: extensions/v1beta1
+kind: Deployment 
+metadata:
+  labels:
+    app: airflow-crawler
+  name: airflow-crawler
+  namespace: default
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: airflow-crawler
+    spec:
+      containers:
+      - args:
+        - -c
+        - ln -s /dags /usr/local/airflow/dags && airflow worker
+        command:
+        - /bin/sh
+        env:
+        - name: REPORTINGDB_HOST
+          value: pT05NqD42D8c
+        - name: CRAWLER_CASSANDRA_HOSTNAME
+          value: 10.0.4.86
+        - name: CRAWLER_CASSANDRA_USERNAME
+          value: crawler
+        - name: CRAWLER_CASSANDRA_PASSWORD
+          value: 0NMYsWYA68Dc
+        - name: COMMON_RABBITMQ_HOSTNAME
+          value: 10.0.8.128
+        - name: COMMON_RABBITMQ_USERNAME
+          value: onesky
+        - name: COMMON_RABBITMQ_PASSWORD
+          value: anobii
+        - name: AIRFLOW__DAGS_FOLDER
+          value: /dags
+        - name: AIRFLOW__CORE__PARALLELISM
+          value: "5"
+        - name: AIRFLOW__CORE__LOAD_EXAMPLES
+          value: "False"
+        - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+          value: postgresql://oneskyintel:YM51qHDPYj4f@intel-postgresql-941.cra53h3rotuv.us-east-1.rds.amazonaws.com/airflow
+        - name: AIRFLOW__CELERY__BROKER_URL
+          value: amqp://onesky-airflow:anobii-airflow@10.0.8.128:5672/airflow
+        - name: AIRFLOW__CELERY__CELERY_RESULT_BACKEND
+          valueFrom:
+            secretKeyRef:
+              key: celery-url
+              name: airflow
+        - name: PYTHONPATH
+          value: /usr/src/app/mobilestore:/dags
+        - name: APPOPS_RABBITMQ_EXCHANGE
+          value: app_ops
+        - name: AIRFLOW__CORE__REMOTE_BASE_LOG_FOLDER
+          value: s3://oneskyapp.mobile-intel/postmon/crawler_logs
+        - name: AIRFLOW__CORE__REMOTE_LOG_CONN_ID
+          value: S3_LOG
+        - name: AIRFLOW__CORE__FERNET_KEY
+          valueFrom:
+            secretKeyRef:
+              key: fernet-key
+              name: airflow
+        image: quay.io/onesky/crawler:{{IMG_VERSION}}
+        imagePullPolicy: IfNotPresent
+        name: airflow-crawler
+        ports:
+        - containerPort: 8793
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 4Gi
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /dags
+          name: dags
+      - args:
+        - -c
+        - cp -R /usr/local/airflow/dags / && ls /dags && while true; do sleep 1000;
+          done
+        command:
+        - /bin/sh
+        image: quay.io/onesky/airflow-dags:1.0
+        imagePullPolicy: IfNotPresent
+        name: airflow-dags
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /dags
+          name: dags
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quay
+      nodeSelector:
+        role: kube-big-data
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: dags
+
