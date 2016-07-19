@@ -1,0 +1,85 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    app: airflow-schedule
+  name: airflow-schedule
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: airflow-schedule
+    spec:
+      containers:
+      - args:
+        - -c
+        - cp -R /usr/local/airflow/dags / && ls /dags && while true; do sleep 1000;
+          done
+        command:
+        - /bin/sh
+        image: quay.io/onesky/airflow-dags:1.0
+        imagePullPolicy: IfNotPresent
+        name: airflow-dags
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /dags
+          name: dags
+      - args:
+        - -c
+        - ln -s /dags /usr/local/airflow/dags && airflow scheduler
+        command:
+        - /bin/sh
+        env:
+        - name: REPORTINGDB_HOST
+          value: pT05NqD42D8c
+        - name: COMMON_RABBITMQ_HOSTNAME
+          value: 10.0.8.128
+        - name: COMMON_RABBITMQ_USERNAME
+          value: onesky
+        - name: COMMON_RABBITMQ_PASSWORD
+          value: anobii
+        - name: AIRFLOW__CORE__PARALLELISM
+          value: "5"
+        - name: AIRFLOW__CORE__LOAD_EXAMPLES
+          value: "False"
+        - name: AIRFLOW__CORE__SQL_ALCHEMY_CONN
+          value: postgresql://oneskyintel:YM51qHDPYj4f@intel-postgresql-941.cra53h3rotuv.us-east-1.rds.amazonaws.com/airflow
+        - name: AIRFLOW__CELERY__BROKER_URL
+          value: amqp://onesky-airflow:anobii-airflow@10.0.8.128:5672/airflow
+        - name: AIRFLOW__CELERY__CELERY_RESULT_BACKEND
+          value: amqp://onesky-airflow:anobii-airflow@10.0.8.128:5672/airflow
+        - name: PYTHONPATH
+          value: /usr/src/app/mobilestore:/dags
+        image: quay.io/onesky/crawler:{{IMG_VERSION}}
+        imagePullPolicy: IfNotPresent
+        name: airflow-schedule
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "2"
+            memory: 1Gi
+          requests:
+            cpu: 500m
+            memory: 1Gi
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /dags
+          name: dags
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quay
+      nodeSelector:
+        role: kube-big-data
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - emptyDir: {}
+        name: dags
+
