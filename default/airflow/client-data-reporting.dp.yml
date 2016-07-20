@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment 
+metadata:
+  labels:
+    app: client-data-reporting
+  name: client-data-reporting
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: client-data-reporting
+    spec:
+      containers:
+      - env:
+        - name: REPORTINGDB_HOST
+          value: test
+        image: quay.io/onesky/client-data-reporting:{{IMG_VERSION}}
+        imagePullPolicy: IfNotPresent
+        name: client-data-reporting
+        ports:
+        - containerPort: 4000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quay
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
