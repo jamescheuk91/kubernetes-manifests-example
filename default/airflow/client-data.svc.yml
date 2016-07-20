@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    http/auth: 1sky:3212388@NorthCape
+    http/host: internal-data.1sky.io
+  labels:
+    app: client-data-service
+    http/proxy: enable
+  name: client-data-service
+  namespace: default
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 4000
+  selector:
+    app: client-data-reporting
+  sessionAffinity: None
+  type: ClusterIP
