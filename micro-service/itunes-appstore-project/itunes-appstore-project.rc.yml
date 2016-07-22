@@ -32,6 +32,8 @@ spec:
             value: "itunes-translation.{{ENV}}.svc.cluster.local"
           - name: TRANSLATOR_ALLOCATION_ADDRESS
             value: "legacy-ta.{{ENV}}.svc.cluster.local"
+          - name: ITUNES_APPSTORE_ORDER_SERVICE_ADDRESS 
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
               secretKeyRef:
