@@ -25,8 +25,15 @@ spec:
         env:
           - name: ENV
             value: "{{ENV}}"
+          - name: CDN
+            valueFrom:
+              secretKeyRef:
+                name: client-web-portal
+                key: cdn
           - name: API_ENDPOINT
             value: "https://{{ENDPOINT_CWP_API}}"
+          - name: LOAD_LOCAL_LOCALE
+            value: "false"
           - name: API_VERSION
             valueFrom:
               secretKeyRef:
