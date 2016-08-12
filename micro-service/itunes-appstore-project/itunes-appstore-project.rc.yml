@@ -75,3 +75,24 @@ spec:
               secretKeyRef:
                 name: rabbitmq
                 key: password
+          - name: S3_ACCESS_KEY_ID 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: s3.access-key-id
+          - name: S3_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: s3.secret-access-key
+          - name: S3_BUCKET
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: s3.bucket
+          - name: S3_BASE_PATH
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: s3.base-path
+
