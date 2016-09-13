@@ -13,7 +13,7 @@ spec:
       imagePullSecrets:
       - name: quay
       containers:
-      - name: itunes-translation
+      - name: appstore-integration 
         image: quay.io/onesky/itunesconnect_worker:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
@@ -25,7 +25,4 @@ spec:
           requests:
             cpu: 200m
             memory: 384Mi
-        env:
-          - name: ONESKY_TEST 
-            value: "Just For Fun"
 
