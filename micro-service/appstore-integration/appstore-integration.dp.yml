@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment 
+metadata:
+  namespace: {{ENV}}
+  name: appstore-integration 
+spec:
+  replicas: {{REPLICAS}} 
+  template:
+    metadata:
+      labels:
+        app: appstore-integration 
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: itunes-translation
+        image: quay.io/onesky/itunesconnect_worker:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: ONESKY_TEST 
+            value: "Just For Fun"
+
