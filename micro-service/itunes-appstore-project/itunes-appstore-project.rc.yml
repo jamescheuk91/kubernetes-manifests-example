@@ -35,6 +35,8 @@ spec:
           - name: ITUNES_APPSTORE_ORDER_SERVICE_ADDRESS 
             #value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
             value: 127.0.0.1
+          - name: APPSTORE_INTEGRATION_SERVICE_ADDRESS
+            value: "appstore-integration.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
               secretKeyRef:
