@@ -23,9 +23,17 @@ spec:
         - mountPath: /var/lib/docker/containers
           name: varlibdockercontainers
           readOnly: true
+        - mountPath: /etc/td-agent
+          name: vol-tdagent
       imagePullSecrets:
       - name: quay
       volumes:
+      - configMap:
+          items:
+          - key: tdagent.file
+            path: td-agent.conf
+          name: fluentd-logging 
+        name: vol-tdagent 
       - hostPath:
           path: /var/log
         name: varlog
