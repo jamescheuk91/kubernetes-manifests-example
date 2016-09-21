@@ -32,6 +32,8 @@ spec:
             value: "client.{{ENV}}.svc.cluster.local"
           - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
             value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
+          - name: ITUNES_CONNECT_SERVICE_ADDRESS
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: ORDERING_SERVICE_ADDRESS
             value: "ordering.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
