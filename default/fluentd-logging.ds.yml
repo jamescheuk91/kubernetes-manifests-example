@@ -15,7 +15,7 @@ spec:
       - env:
         - name: FLUENTD_ARGS
           value: -q
-        image: quay.io/onesky/fluentd-kubernetes:0.0.2
+        image: quay.io/onesky/fluentd-kubernetes:0.0.4
         name: fluentd-logging
         volumeMounts:
         - mountPath: /var/log
