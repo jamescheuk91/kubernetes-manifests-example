@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: import-activemq-admin 
+  labels:
+    name: import-activemq-admin 
+    http/proxy: enable
+  annotations:
+    http/host: {{ENDPOINT_IMPORT_ACTIVEMQ_ADMIN}}
+    http/max_resp_size: 20Mi
+spec:
+  selector:
+    component: import-activemq-master 
+  ports:
+  - name: admin 
+    port: 8181
+    targetPort: admin
+    protocol: TCP
