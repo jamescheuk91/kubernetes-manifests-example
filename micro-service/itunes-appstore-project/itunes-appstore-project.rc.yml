@@ -97,4 +97,21 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: s3.base-path
+          - name: AWS_KMS_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: aws-kms.access-key
+
+          - name: AWS_KMS_SECRET_KEY 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: aws-kms.secret-key
+          - name: AWS_KMS_ITUNESCONNECT_CREDENTIAL_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: aws-kms.itunesconnect-credential-key-id
+
 
