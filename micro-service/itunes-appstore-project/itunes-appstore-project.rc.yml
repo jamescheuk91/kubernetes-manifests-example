@@ -4,7 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: itunes-appstore-project
 spec:
-  replicas: {{REPLICAS}} 
+  replicas: {{REPLICAS}}
   template:
     metadata:
       labels:
@@ -32,11 +32,13 @@ spec:
             value: "itunes-translation.{{ENV}}.svc.cluster.local"
           - name: TRANSLATOR_ALLOCATION_ADDRESS
             value: "legacy-ta.{{ENV}}.svc.cluster.local"
-          - name: ITUNES_APPSTORE_ORDER_SERVICE_ADDRESS 
+          - name: ITUNES_APPSTORE_ORDER_SERVICE_ADDRESS
             #value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
             value: 127.0.0.1
           - name: APPSTORE_INTEGRATION_SERVICE_ADDRESS
             value: "appstore-integration.{{ENV}}.svc.cluster.local"
+          - name: ITUNES_CONNECT_SERVICE_ADDRESS
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
               secretKeyRef:
@@ -77,7 +79,7 @@ spec:
               secretKeyRef:
                 name: rabbitmq
                 key: password
-          - name: S3_ACCESS_KEY_ID 
+          - name: S3_ACCESS_KEY_ID
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
@@ -103,7 +105,7 @@ spec:
                 name: itunes-appstore-project
                 key: aws-kms.access-key
 
-          - name: AWS_KMS_SECRET_KEY 
+          - name: AWS_KMS_SECRET_KEY
             valueFrom:
               secretKeyRef:
                 name: itunes-appstore-project
@@ -113,5 +115,3 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: aws-kms.itunesconnect-credential-key-id
-
-
