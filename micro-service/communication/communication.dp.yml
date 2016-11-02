@@ -71,6 +71,16 @@ spec:
               secretKeyRef:
                 name: communication
                 key: pgsql.password
+          - name: LAYER_APP_ID
+            valueFrom:
+              secretKeyRef:
+                name: communication
+                key: layer.app-id
+          - name: LAYER_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: communication
+                key: layer.token
           - name: LAYER_PROVIDER_ID
             valueFrom:
               secretKeyRef:
