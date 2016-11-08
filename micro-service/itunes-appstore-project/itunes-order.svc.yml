@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: itunes-order
+spec:
+  selector:
+    app: itunes-appstore-project
+  ports:
+  - name: rpc
+    port: 50052
+    targetPort: rpc
+    protocol: TCP
