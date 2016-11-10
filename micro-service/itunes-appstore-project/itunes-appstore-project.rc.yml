@@ -26,6 +26,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+          - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
+            value: 127.0.0.1
           - name: ORDERING_SERVICE_ADDRESS
             value: "ordering.{{ENV}}.svc.cluster.local"
           - name: ITUNES_TRANSLATION_ADDRESS
