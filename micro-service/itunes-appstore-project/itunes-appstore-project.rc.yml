@@ -39,6 +39,8 @@ spec:
             value: 127.0.0.1
           - name: APPSTORE_INTEGRATION_SERVICE_ADDRESS
             value: "appstore-integration.{{ENV}}.svc.cluster.local"
+          - name: CONTACT_SERVICE_ADDRESS
+            value: "client.{{ENV}}.svc.cluster.local"
           - name: ITUNES_CONNECT_SERVICE_ADDRESS
             value: 127.0.0.1
           - name: PGSQL_HOST
