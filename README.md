@@ -140,3 +140,6 @@ spec:
                 key: password
 
  ```
+
+### applying the config to kube
+`kubectl apply -f itunes-translation.rc.yml`
