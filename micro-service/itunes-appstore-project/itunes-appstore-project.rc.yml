@@ -119,3 +119,8 @@ spec:
               secretKeyRef:
                 name: itunes-appstore-project
                 key: aws-kms.itunesconnect-credential-key-id
+          - name: SENDGRID_APIKEY 
+            valueFrom:
+              secretKeyRef:
+                name: itunes-appstore-project
+                key: sendgrid.apikey 
