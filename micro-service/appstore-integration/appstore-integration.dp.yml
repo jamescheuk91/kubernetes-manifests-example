@@ -25,4 +25,9 @@ spec:
           requests:
             cpu: 200m
             memory: 384Mi
-
+        env:
+          - name: SENDGRID_APIKEY 
+            valueFrom:
+              configMapKeyRef:
+                name: sendgrid
+                key: apikey 
