@@ -1,5 +1,5 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1
+kind: Deployment 
 metadata:
   namespace: {{ENV}}
   name: client
@@ -28,43 +28,43 @@ spec:
         env:
           - name: PGSQL_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client
                 key: pgsql.host
           - name: PGSQL_DATABASE
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client
                 key: pgsql.database
           - name: PGSQL_PORT
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client
                 key: pgsql.port
           - name: PGSQL_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client
                 key: pgsql.username
           - name: PGSQL_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client
                 key: pgsql.password
 
           - name: RABBITMQ_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: host
           - name: RABBITMQ_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: username
           - name: RABBITMQ_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: password
 
@@ -72,6 +72,6 @@ spec:
             value: client-web-portal-api.{{ENV}}.svc.cluster.local
           - name: TYK_SECRET
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: tyk
                 key: secret
