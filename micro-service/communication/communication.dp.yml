@@ -29,17 +29,17 @@ spec:
 
           - name: RABBITMQ_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: host
           - name: RABBITMQ_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: username
           - name: RABBITMQ_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: rabbitmq
                 key: password
           - name: ORDERING_SERVICE_ADDRESS
@@ -48,51 +48,51 @@ spec:
             value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: pgsql.host
           - name: PGSQL_DATABASE
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: pgsql.database
           - name: PGSQL_PORT
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: pgsql.port
           - name: PGSQL_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: pgsql.username
           - name: PGSQL_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: pgsql.password
           - name: LAYER_APP_ID
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: layer.app-id
           - name: LAYER_TOKEN
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: layer.token
           - name: LAYER_PROVIDER_ID
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: layer.provider-id
           - name: LAYER_KEY_ID
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: layer.key-id
           - name: RSA_KEY_PATH
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: communication
                 key: layer.rsa-key-path
