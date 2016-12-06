@@ -27,7 +27,7 @@ spec:
             value: "{{ENV}}"
           - name: CDN
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: cdn
           - name: API_ENDPOINT
@@ -36,41 +36,41 @@ spec:
             value: "false"
           - name: API_VERSION
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: api.version
           - name: LOGENTRIES_TOKEN
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: logentries.token
           - name: RAYGUN_TOKEN
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: raygun.token
           - name: STRIPE_PUBLISHABLE_KEY
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: stripe.publishable.key
           - name: ZENDESK
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: zendesk
           - name: INTERCOM_APP_ID
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: intercom.app.id
           - name: GA
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: ga
           - name: HEAP
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: client-web-portal
                 key: heap
