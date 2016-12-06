@@ -37,7 +37,7 @@ spec:
                 key: jwt.secret
           - name: ENDPOINT_API_GATEWAY 
             value: "http://api-gateway.{{ENV}}.svc.cluster.local"
-          - name: ENDPOINT_CWP
-            value: "{{ENDPOINT_CWP}}" 
+          - name: ENDPOINT_CWP_API
+            value: "{{ENDPOINT_CWP_API}}" 
           - name: ENDPOINT_INTERNAL_PORTAL 
             value: "{{ENDPOINT_INTERNAL_PORTAL}}"
