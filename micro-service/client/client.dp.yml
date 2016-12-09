@@ -26,6 +26,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+          - name: JAVA_TOOL_OPTIONS 
+            value: "-Xms128m -Xmx500m"
           - name: PGSQL_HOST
             valueFrom:
               configMapKeyRef:
