@@ -24,49 +24,49 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
-        - name: TRANSLATOR_ALLOCATION_ADDRESS
-          value: "legacy-ta.{{ENV}}.svc.cluster.local"
-        - name: PGSQL_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: ordering
-              key: pgsql.host
-        - name: PGSQL_DATABASE
-          valueFrom:
-            configMapKeyRef:
-              name: ordering
-              key: pgsql.database
-        - name: PGSQL_USERNAME
-          valueFrom:
-            configMapKeyRef:
-              name: ordering
-              key: pgsql.username
-        - name: PGSQL_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: ordering
-              key: pgsql.password
-        - name: PGSQL_PORT
-          value: "5432"
-        - name: RABBITMQ_HOST
-          valueFrom:
-            configMapKeyRef:
-              name: rabbitmq
-              key: host
-        - name: RABBITMQ_USERNAME
-          valueFrom:
-            configMapKeyRef:
-              name: rabbitmq
-              key: username
-        - name: RABBITMQ_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: rabbitmq
-              key: password
-        - name: STRIPE_API_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: stripe
-              key: test-api-key
-      imagePullSecrets:
+          - name: TRANSLATOR_ALLOCATION_ADDRESS
+            value: "legacy-ta.{{ENV}}.svc.cluster.local"
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: ordering
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: ordering
+                key: pgsql.database
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: ordering
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: ordering
+                key: pgsql.password
+          - name: PGSQL_PORT
+            value: "5432"
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
+          - name: STRIPE_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: stripe
+                key: test-api-key
+        imagePullSecrets:
       - name: quay

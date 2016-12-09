@@ -26,6 +26,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+          - name: JAVA_TOOL_OPTIONS 
+            value: "-Xms128m -Xmx500m"
           - name: LOG_LEVEL
             value: "INFO"
           - name: CLIENT_SERVICE_ADDRESS
@@ -39,9 +41,9 @@ spec:
           - name: COMMUNICATION_SERVICE_ADDRESS
             value: "communication.{{ENV}}.svc.cluster.local"
           - name: ITUNES_ORDER_SERVICE_ADDRESS 
-            value: "itunes-order.{{ENV}}.svc.cluster.local"
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: REALTIME_COMMUNICATION_SERVICE_ADDRESS
-            value: "realtime-communication.{{ENV}}.svc.cluster.local"            
+            value: "realtime-communication.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:
