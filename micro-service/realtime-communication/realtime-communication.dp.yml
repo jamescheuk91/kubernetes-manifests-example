@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: realtime-communication
+spec:
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: realtime-communication
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: realtime-communication
+        image: quay.io/onesky/realtime-communication:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
+          - name: ABLY_SECRET_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: realtime-communication
+                key: ably-secrete

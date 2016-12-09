@@ -40,6 +40,8 @@ spec:
             value: "communication.{{ENV}}.svc.cluster.local"
           - name: ITUNES_ORDER_SERVICE_ADDRESS 
             value: "itunes-order.{{ENV}}.svc.cluster.local"
+          - name: REALTIME_COMMUNICATION_SERVICE_ADDRESS
+            value: "realtime-communication.{{ENV}}.svc.cluster.local"            
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:

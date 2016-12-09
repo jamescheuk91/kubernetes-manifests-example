@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: realtime-communication
+spec:
+  selector:
+    app: realtime-communication
+  ports:
+  - name: rpc
+    port: 50051
+    targetPort: rpc
+    protocol: TCP
