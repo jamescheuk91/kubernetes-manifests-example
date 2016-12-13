@@ -84,3 +84,8 @@ spec:
               configMapKeyRef:
                 name: client-web-portal
                 key: layer.auth.url
+          - name: ABLY_AUTH_URL
+            valueFrom:
+              configMapKeyRef:
+                name: client-web-portal
+                key: ably.auth.url
