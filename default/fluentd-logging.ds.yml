@@ -13,6 +13,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: JAVA_TOOL_OPTIONS
+          value: "-Xms128m -Xmx500m"
         - name: FLUENTD_ARGS
           value: -q
         image: quay.io/onesky/fluentd-kubernetes:0.0.4
