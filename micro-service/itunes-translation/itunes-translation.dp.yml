@@ -4,6 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: itunes-translation
 spec:
+  revisionHistoryLimit: 2
   replicas: {{REPLICAS}} 
   template:
     metadata:

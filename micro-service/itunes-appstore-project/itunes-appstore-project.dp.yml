@@ -4,6 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: itunes-appstore-project
 spec:
+  revisionHistoryLimit: 2
   replicas: {{REPLICAS}}
   template:
     metadata:

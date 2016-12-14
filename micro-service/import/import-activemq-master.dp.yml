@@ -4,6 +4,7 @@ metadata:
   namespace: {{ENV}}
   name: import-activemq-master
 spec:
+  revisionHistoryLimit: 2
   replicas: 1
   template:
     metadata:
