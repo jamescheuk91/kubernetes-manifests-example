@@ -1,5 +1,5 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: extensions/v1beta1 
+kind: Deployment 
 metadata:
   namespace: {{ENV}}
   name: import-activemq-master
@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: import-activemq-master
-        image: quay.io/onesky/activemq:mysql-ca7c063
+        image: quay.io/onesky/activemq:mysql-20161006b
         resources:
           limits:
             cpu: 300m
@@ -26,19 +26,19 @@ spec:
 
           - name: MYSQL_HOST
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: core-mysql
                 key: host
           - name: MYSQL_DB
             value: onesky_import_activemq
           - name: MYSQL_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: core-mysql
                 key: username
           - name: MYSQL_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: core-mysql
                 key: password
 
@@ -46,17 +46,17 @@ spec:
             value: master
           - name: BROKER_USERNAME
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: import
                 key: activemq.username
           - name: BROKER_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: import
                 key: activemq.password
           - name: ADMIN_PASSWORD
             valueFrom:
-              secretKeyRef:
+              configMapKeyRef:
                 name: import
                 key: activemq.admin-password
         ports:
