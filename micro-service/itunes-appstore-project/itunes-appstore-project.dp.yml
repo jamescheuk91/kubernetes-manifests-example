@@ -31,8 +31,8 @@ spec:
             value: "-Xms128m -Xmx500m"
           - name: ITUNES_APPSTORE_PROJECT_SERVICE_ADDRESS
             value: 127.0.0.1
-          - name: ORDERING_SERVICE_ADDRESS
-            value: "ordering.{{ENV}}.svc.cluster.local"
+          - name: PAYMENT_SERVICE_ADDRESS
+            value: "payment.{{ENV}}.svc.cluster.local"
           - name: ITUNES_TRANSLATION_ADDRESS
             value: "itunes-translation.{{ENV}}.svc.cluster.local"
           - name: TRANSLATOR_ALLOCATION_ADDRESS
