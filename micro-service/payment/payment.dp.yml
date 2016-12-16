@@ -2,18 +2,20 @@ apiVersion: extensions/v1beta1
 kind: Deployment 
 metadata:
   namespace: {{ENV}}
-  name: ordering
+  name: payment
 spec:
   revisionHistoryLimit: 2
   replicas: {{REPLICAS}}
   template:
     metadata:
       labels:
-        app: ordering
+        app: payment
     spec:
+      imagePullSecrets:
+      - name: quay
       containers:
-      - name: ordering
-        image: quay.io/onesky/ordering:{{IMG_VERSION}}
+      - name: payment
+        image: quay.io/onesky/payment:{{IMG_VERSION}}
         ports:
         - containerPort: 50051
           name: rpc
@@ -30,22 +32,22 @@ spec:
           - name: PGSQL_HOST
             valueFrom:
               configMapKeyRef:
-                name: ordering
+                name: payment
                 key: pgsql.host
           - name: PGSQL_DATABASE
             valueFrom:
               configMapKeyRef:
-                name: ordering
+                name: payment
                 key: pgsql.database
           - name: PGSQL_USERNAME
             valueFrom:
               configMapKeyRef:
-                name: ordering
+                name: payment
                 key: pgsql.username
           - name: PGSQL_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: ordering
+                name: payment
                 key: pgsql.password
           - name: PGSQL_PORT
             value: "5432"
@@ -69,5 +71,3 @@ spec:
               configMapKeyRef:
                 name: stripe
                 key: test-api-key
-        imagePullSecrets:
-      - name: quay
