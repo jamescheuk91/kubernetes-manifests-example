@@ -5,10 +5,6 @@ metadata:
   namespace: {{ENV}}
   labels:
     app: client-web-portal
-    http/proxy: enable
-  annotations:
-    http/host: {{ENDPOINT_CWP}} # And here
-    # http/auth: 1sky:passwordTBC # For internal, actual password will be overriden at live
 spec:
   ports:
     # the port that this service should serve on
@@ -16,3 +12,21 @@ spec:
     targetPort: 8080
   selector:
     app: client-web-portal
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: client-web-portal 
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_CWP}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-web-portal
+              servicePort: 8080
+
