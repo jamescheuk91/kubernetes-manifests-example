@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: log-cleaner
+  name: log-cleaner
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: log-cleaner
+  template:
+    metadata:
+      labels:
+        app: log-cleaner
+      name: log-cleaner
+    spec:
+      containers:
+      - image: quay.io/onesky/log-cleaner:0.0.5
+        imagePullPolicy: IfNotPresent
+        name: log-cleaner
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /var/log/containers
+          name: vol-containers
+        - mountPath: /var/lib/docker/containers
+          name: vol-real-containers
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: quay
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - hostPath:
+          path: /var/log/containers
+        name: vol-containers
+      - hostPath:
+          path: /var/lib/docker/containers
+        name: vol-real-containers
+
