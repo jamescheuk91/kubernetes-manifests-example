@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet 
+metadata:
+  name: traefik
+  namespace: kube-system
+  labels:
+    k8s-app: traefik
+spec:
+  selector:
+    matchLabels:
+      k8s-app: traefik
+  template:
+    metadata:
+      labels:
+        k8s-app: traefik
+        name: traefik
+    spec:
+      terminationGracePeriodSeconds: 60
+      hostNetwork: true
+      containers:
+      - image: traefik:v1.1.2
+        name: traefik
+        resources:
+          limits:
+            cpu: 200m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+        ports:
+        - name: http
+          containerPort: 80
+        - name: admin
+          containerPort: 8182
+        args:
+        - --web
+        - --web.address=:8182
+        - --kubernetes
+        - --kubernetes.endpoint=http://babel-kube.1sky.io:8080
