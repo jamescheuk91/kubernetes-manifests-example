@@ -5,10 +5,6 @@ metadata:
   name: client-web-portal-api
   labels:
     name: client-web-portal-api
-    http/proxy: enable
-  annotations:
-    http/host: {{ENDPOINT_CWP_API}}
-    http/max_resp_size: 20Mi
 spec:
   selector:
     app: api-gateway-tyk
@@ -17,3 +13,21 @@ spec:
     port: 80
     targetPort: http
     protocol: TCP
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: client-web-portal-api 
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_CWP_API}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-web-portal-api
+              servicePort: http 
+
