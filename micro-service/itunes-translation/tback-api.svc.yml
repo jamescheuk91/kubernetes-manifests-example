@@ -5,10 +5,6 @@ metadata:
   name: tback-api
   labels:
     name: tback-api
-    http/proxy: enable
-  annotations:
-    http/host: {{ENDPOINT_TBACK_API}}
-    http/max_resp_size: 20Mi
 spec:
   selector:
     app: itunes-translation
@@ -17,3 +13,20 @@ spec:
     port: 80
     targetPort: 8080
     protocol: TCP
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tback-api 
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_TBACK_API}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tback-api 
+              servicePort: http 
+
