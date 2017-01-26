@@ -11,3 +11,20 @@ spec:
     port: 80
     targetPort: http
     protocol: TCP
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-gateway
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_API_GW}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: api-gateway 
+              servicePort: http 
