@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: parser-qa
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: parser-qa
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: parser-qa
+        image: quay.io/onesky/parser-qa:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: JAVA_TOOL_OPTIONS 
+            value: "-Xms128m -Xmx500m"
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: parser-qa
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: parser-qa
+                key: pgsql.database
+          - name: PGSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: parser-qa
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: parser-qa
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: parser-qa
+                key: pgsql.password
+
