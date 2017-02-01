@@ -45,6 +45,8 @@ spec:
             value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: REALTIME_COMMUNICATION_SERVICE_ADDRESS
             value: "realtime-communication.{{ENV}}.svc.cluster.local"
+          - name: PARSER_QA_SERVICE_ADDRESS
+            value: "parser-qa.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:
