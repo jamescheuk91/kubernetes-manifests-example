@@ -52,3 +52,8 @@ spec:
               configMapKeyRef:
                 name: client-web-portal
                 key: jwt.secret
+          - name: JWT_INTERNAL_API_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: api-gateway
+                key: jwt.internal-api-secret
