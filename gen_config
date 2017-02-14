@@ -8,7 +8,7 @@ if [ "$ENV" == "prod" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export ENDPOINT_CWP=HAHA # let's get it done before production
     export ENDPOINT_CWP_API=api-cwp.1sky.io
-    export ENDPOINT_INTERNAL_PORTAL=apigw.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=api-internal.1sky.io
     export ENDPOINT_TBACK_API=tback.1sky.io
     export ENDPOINT_IMPORT_ACTIVEMQ_ADMIN=import-activemq-admin.1sky.io
     export ENDPOINT_API_GW=apigw.1sky.io
@@ -17,7 +17,7 @@ elif [ "$ENV" == "stag" ]; then
     export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=ones.ky
     export ENDPOINT_CWP_API=stag-api-cwp.1sky.io
-    export ENDPOINT_INTERNAL_PORTAL=dev-apigw.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=stag-api-internal.1sky.io
     export ENDPOINT_TBACK_API=stag-tback.1sky.io
     export ENDPOINT_API_GW=stag-apigw.1sky.io
 elif [ "$ENV" == "dev" ]; then
@@ -25,7 +25,7 @@ elif [ "$ENV" == "dev" ]; then
     export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=dev-cwp.1sky.io
     export ENDPOINT_CWP_API=dev-api-cwp.1sky.io
-    export ENDPOINT_INTERNAL_PORTAL=dev-apigw.1sky.io
+    export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
     export ENDPOINT_TBACK_API=dev-tback.1sky.io
     export ENDPOINT_API_GW=dev-apigw.1sky.io
 elif [ "$ENV" == "default" ]; then
