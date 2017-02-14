@@ -33,6 +33,11 @@ spec:
                 key: secret
           - name: REDIS_HOST
             value: "api-gateway-tyk-redis.{{ENV}}.svc.cluster.local"
+          - name: INTERNAL_PORTAL_JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: client-web-portal
+                key: jwt.secret
           - name: CLIENT_WEB_PORTAL_JWT_SECRET
             valueFrom:
               configMapKeyRef:
