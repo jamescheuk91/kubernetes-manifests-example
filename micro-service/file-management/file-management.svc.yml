@@ -2,10 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: {{ENV}}
-  name: file-mangement
+  name: file-management
 spec:
   selector:
-    app: file-mangement
+    app: file-management
   ports:
   - name: rpc
     port: 50051
