@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: file-mangement
+spec:
+  selector:
+    app: file-mangement
+  ports:
+  - name: rpc
+    port: 50051
+    targetPort: rpc
+    protocol: TCP

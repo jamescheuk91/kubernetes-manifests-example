@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: file-mangement
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: file-mangement
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: file-mangement
+        image: quay.io/onesky/file-mangement:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: JAVA_TOOL_OPTIONS
+            value: "-Xms128m -Xmx500m"
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: pgsql.database
+          - name: PGSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: pgsql.password
+          - name: S3_ACCESS_KEY_ID
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: s3.accesskey
+          - name: S3_SECRET_ACCESS_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: file-mangement
+                key: s3.secretkey

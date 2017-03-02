@@ -1,5 +1,5 @@
-apiVersion: extensions/v1beta1 
-kind: Deployment 
+apiVersion: extensions/v1beta1
+kind: Deployment
 metadata:
   namespace: {{ENV}}
   name: api-gateway
@@ -27,7 +27,7 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
-          - name: JAVA_TOOL_OPTIONS 
+          - name: JAVA_TOOL_OPTIONS
             value: "-Xms128m -Xmx500m"
           - name: LOG_LEVEL
             value: "INFO"
@@ -41,14 +41,16 @@ spec:
             value: "ordering.{{ENV}}.svc.cluster.local"
           - name: COMMUNICATION_SERVICE_ADDRESS
             value: "communication.{{ENV}}.svc.cluster.local"
-          - name: ITUNES_ORDER_SERVICE_ADDRESS 
+          - name: ITUNES_ORDER_SERVICE_ADDRESS
             value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
           - name: REALTIME_COMMUNICATION_SERVICE_ADDRESS
             value: "realtime-communication.{{ENV}}.svc.cluster.local"
           - name: PARSER_QA_SERVICE_ADDRESS
             value: "parser-qa.{{ENV}}.svc.cluster.local"
-          - name: PROJECT_PERMIT_SERVICE_ADDRESS 
+          - name: PROJECT_PERMIT_SERVICE_ADDRESS
             value: "project-permit.{{ENV}}.svc.cluster.local"
+          - name: FILE_MANGEMENT_SERVICE_ADDRESS
+            value: "file-mangement.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:
