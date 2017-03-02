@@ -49,8 +49,8 @@ spec:
             value: "parser-qa.{{ENV}}.svc.cluster.local"
           - name: PROJECT_PERMIT_SERVICE_ADDRESS
             value: "project-permit.{{ENV}}.svc.cluster.local"
-          - name: FILE_MANGEMENT_SERVICE_ADDRESS
-            value: "file-mangement.{{ENV}}.svc.cluster.local"
+          - name: FILE_MANAGEMENT_SERVICE_ADDRESS
+            value: "file-management.{{ENV}}.svc.cluster.local"
           - name: JWT_SECRET
             valueFrom:
               configMapKeyRef:
