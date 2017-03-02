@@ -1,0 +1,52 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment 
+metadata:
+  namespace: {{ENV}}
+  name: project-permit
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: project-permit
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: project-permit
+        image: quay.io/onesky/project-permit:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: project-permit
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: project-permit
+                key: pgsql.database
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: project-permit
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: project-permit
+                key: pgsql.password
+          - name: PGSQL_PORT
+            value: "5432"
+
