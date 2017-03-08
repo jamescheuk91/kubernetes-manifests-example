@@ -29,4 +29,45 @@ spec:
         env:
           - name: JAVA_TOOL_OPTIONS 
             value: "-Xms128m -Xmx500m"
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: pgsql.database
+          - name: PGSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: pgsql.password
+
 
