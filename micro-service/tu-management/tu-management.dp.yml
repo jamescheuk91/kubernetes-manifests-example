@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: tu-management
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: tu-management
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: tu-management
+        image: quay.io/onesky/tu-management:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: JAVA_TOOL_OPTIONS 
+            value: "-Xms128m -Xmx500m"
+
