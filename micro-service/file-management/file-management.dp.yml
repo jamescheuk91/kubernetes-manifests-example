@@ -29,6 +29,8 @@ spec:
         env:
           - name: JAVA_TOOL_OPTIONS
             value: "-Xms128m -Xmx500m"
+          - name: TU_MANAGEMENT_ADDRESS 
+            value: "tu-management.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
               configMapKeyRef:
@@ -74,11 +76,6 @@ spec:
               configMapKeyRef:
                 name: file-management
                 key: s3.base-path
-          - name: TU_MANAGEMENT_ADDRESS 
-            valueFrom:
-              configMapKeyRef:
-                name: file-management
-                key: tu-management-address
           - name: RABBITMQ_HOST 
             valueFrom:
               configMapKeyRef:
