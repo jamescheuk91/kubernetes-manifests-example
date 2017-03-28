@@ -1,0 +1,70 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: notification
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: notification
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: notification
+        image: quay.io/onesky/notification:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
+          - name: ORDERING_SERVICE_ADDRESS
+            value: "ordering.{{ENV}}.svc.cluster.local"
+          - name: ITUNES_APPSTORE_ORDER_SERVICE_ADDRESS
+            value: "itunes-appstore-project.{{ENV}}.svc.cluster.local"
+          - name: CLIENT_SERVICE_ADDRESS
+            value: "client.{{ENV}}.svc.cluster.local"
+          - name: GETSTREAM_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: notification
+                key: getstream.api-key
+          - name: GETSTREAM_API_KEY_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: notification
+                key: getstream.api-key-secret
+          - name: GETSTREAM_APP_ID
+            valueFrom:
+              configMapKeyRef:
+                name: notification
+                key: getstream.app-id
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: notification
+                key: sendgrid.api-key
