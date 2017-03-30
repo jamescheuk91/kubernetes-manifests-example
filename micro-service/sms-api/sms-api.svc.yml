@@ -11,3 +11,21 @@ spec:
     port: 8000
     targetPort: 6543
     protocol: TCP
+apiVersion: v1
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sms-api
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_SMS_API}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: sms-api
+              servicePort: http 
