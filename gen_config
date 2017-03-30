@@ -28,6 +28,7 @@ elif [ "$ENV" == "dev" ]; then
     export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
     export ENDPOINT_TBACK_API=dev-tback.1sky.io
     export ENDPOINT_API_GW=dev-apigw.1sky.io
+    export ENDPOINT_SMS_API=dev-sms-api.1sky.io
 elif [ "$ENV" == "default" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export ENDPOINT_USER_JOURNEY=user-journey.1sky.io
