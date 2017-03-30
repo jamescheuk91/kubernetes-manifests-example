@@ -72,6 +72,8 @@ var tokens = {
     "dev_payment": "2202cde4-4663-41ec-9434-d782b5c18122",
     "dev_project_permit": "727854a5-706b-4e44-9fb3-04e39bfc3d58",
     "dev_realtime_communication": "ad810283-9b6e-4731-bc2d-e9e34e08ca52",
+    "dev_sms": "",
+    "dev_sms_api": "",
     "dev_tu_management": "14a34d51-a3f2-419e-94a4-29812dae5e0d",
 
 }
@@ -95,6 +97,8 @@ var services = [
     'payment',
     'project-permit',
     'realtime-communication',
+    'sms',
+    'sms-api',
     'tu-management',
 ];
 
