@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: traefik-ui
-  namespace: kube-system
+  namespace: {{ENV}}
 spec:
   selector:
     k8s-app: traefik
@@ -16,7 +16,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: traefik-ui
-  namespace: kube-system
+  namespace: {{ENV}}
 spec:
   rules:
   - host: traefik-ui.local

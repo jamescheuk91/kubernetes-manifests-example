@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet 
 metadata:
   name: traefik
-  namespace: kube-system
+  namespace: {{ENV}}
   labels:
     k8s-app: traefik
 spec:
@@ -36,4 +36,4 @@ spec:
         - --web
         - --web.address=:8182
         - --kubernetes
-        - --kubernetes.endpoint=http://babel-kube.1sky.io:8080
+        - --kubernetes.endpoint={{KUBE_MASTER_URL}}

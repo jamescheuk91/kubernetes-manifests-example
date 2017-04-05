@@ -12,6 +12,9 @@ if [ "$ENV" == "prod" ]; then
     export ENDPOINT_TBACK_API=tback.1sky.io
     export ENDPOINT_IMPORT_ACTIVEMQ_ADMIN=import-activemq-admin.1sky.io
     export ENDPOINT_API_GW=apigw.1sky.io
+elif [ "$ENV" == "kube-system" ]; then
+    echo "=== ENV=${ENV} ===" >&2
+
 elif [ "$ENV" == "stag" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export REPLICAS=1 # dev should use 1 only, right?
@@ -34,7 +37,7 @@ elif [ "$ENV" == "default" ]; then
     export ENDPOINT_USER_JOURNEY=user-journey.1sky.io
 
 else
-    echo '$ENV must be prod|stag|dev|default!'
+    echo '$ENV must be prod|stag|dev|default|kube-system!'
     exit 1
 fi
 
