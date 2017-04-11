@@ -37,12 +37,19 @@ elif [ "$ENV" == "default" ]; then
     export ENDPOINT_USER_JOURNEY=user-journey.1sky.io
 
 
+elif [ "$ENV" == "vendor" ]; then
+    echo "=== ENV=${ENV} ===" >&2
+    export REPLICAS=1 # dev should use 1 only, right?
+    export LOGIN=vendor # defaul login name...
+
 elif [ "$ENV" == "oursky" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export REPLICAS=1 # dev should use 1 only, right?
+    export LOGIN=oursky # defaul login name...
 
 else
-    echo '$ENV must be prod|stag|dev|default|kube-system, (oursky)!'
+    echo '$ENV must be prod|stag|dev|default|kube-system, (vendor, oursky)!'
+    echo ' or vendor namespaces: vendor | oursky'
     exit 1
 fi
 
