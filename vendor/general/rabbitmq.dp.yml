@@ -30,7 +30,7 @@ spec:
             memory: 128Mi
         env:
           - name: RABBITMQ_DEFAULT_USER
-            value: admin
+            value: {{LOGIN}} 
           - name: RABBITMQ_DEFAULT_PASS
-            value: admin1234
+            value: abcd1234
 

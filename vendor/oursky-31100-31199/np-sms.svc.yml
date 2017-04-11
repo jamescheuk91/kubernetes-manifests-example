@@ -10,7 +10,7 @@ spec:
   type: NodePort
   ports:
   - name: sms 
-    nodePort: 31102
+    nodePort: 31111
     port: 50051
     protocol: TCP
 
