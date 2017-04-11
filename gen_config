@@ -36,8 +36,13 @@ elif [ "$ENV" == "default" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export ENDPOINT_USER_JOURNEY=user-journey.1sky.io
 
+
+elif [ "$ENV" == "oursky" ]; then
+    echo "=== ENV=${ENV} ===" >&2
+    export REPLICAS=1 # dev should use 1 only, right?
+
 else
-    echo '$ENV must be prod|stag|dev|default|kube-system!'
+    echo '$ENV must be prod|stag|dev|default|kube-system, (oursky)!'
     exit 1
 fi
 
