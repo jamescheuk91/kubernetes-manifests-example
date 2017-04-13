@@ -30,7 +30,11 @@ spec:
           - name: SMS_SERVICE_ADDRESS 
             value: "sms.{{ENV}}.svc.cluster.local:50051"
           - name: ALLOW_ORIGIN 
-            value: "http://{{ENDPOINT_SMS}}"
+            #value: "http://{{ENDPOINT_SMS}}"
+            valueFrom:
+              configMapKeyRef:
+                name: sms
+                key: web.allow_origin
           - name: API_VERSION 
             value: "1"
           - name: AUTH0_SECRET 
@@ -48,10 +52,4 @@ spec:
               configMapKeyRef:
                 name: sms
                 key: web.web_logger_level
-
-          #- name: PGSQL_HOST
-          #valueFrom:
-          #  configMapKeyRef:
-          #    name: sms-api
-          #    key: pgsql.host
 
