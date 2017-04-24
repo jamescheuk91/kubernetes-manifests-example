@@ -1,0 +1,9 @@
+=== Vendor demo ===
+
+dev-vendor.1sky.io:[port]
+
+Ports:
+
+30100 -> 15672   rabbitmq web console vendor:abcd1234
+30101 -> 5672    rabbitmq amqp 
+

@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment 
+metadata:
+  namespace: {{ENV}}
+  name: rabbitmq 
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}} 
+  template:
+    metadata:
+      labels:
+        app: rabbitmq 
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: rabbitmq 
+        image: rabbitmq:3.6.9-management
+        ports:
+        - containerPort: 15672
+          name: admin 
+        - containerPort: 5672
+          name: amqp 
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 200m
+            memory: 128Mi
+        env:
+          - name: RABBITMQ_DEFAULT_USER
+            value: {{LOGIN}} 
+          - name: RABBITMQ_DEFAULT_PASS
+            value: abcd1234
+

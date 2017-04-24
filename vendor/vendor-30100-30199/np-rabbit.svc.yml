@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: vendor 
+  name: np-rabbitmq
+spec:
+  selector:
+    app: rabbitmq 
+
+  type: NodePort
+  ports:
+  - name: rabbitmq-admin 
+    nodePort: 30100 
+    port: 15672 
+    protocol: TCP
+  - name: rabbitmq 
+    nodePort: 30101 
+    port: 5672 
+    protocol: TCP
+
