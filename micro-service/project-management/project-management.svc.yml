@@ -11,3 +11,24 @@ spec:
     port: 50051
     targetPort: rpc
     protocol: TCP
+  - name: http
+    port: 3000
+    targetPort: http
+    protocol: TCP
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: project-management-api
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_PROJECT_MANAGEMENT_API}} 
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: project-management
+              servicePort: http     
