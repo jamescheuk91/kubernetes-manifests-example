@@ -54,5 +54,17 @@ spec:
               configMapKeyRef:
                 name: sms
                 key: grpc.translator_service_address 
+          - name: LAYER_APP_ID
+            valueFrom:
+              configMapKeyRef:
+                name: sms
+                key: grpc.layer_app_id
+          - name: LAYER_TOKEN
+            valueFrom:
+              configMapKeyRef:
+                name: sms
+                key: grpc.layer_token
+
+
 
 
