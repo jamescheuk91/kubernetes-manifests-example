@@ -90,3 +90,18 @@ spec:
               configMapKeyRef:
                 name: client-web-portal
                 key: ably.auth.url
+          - name: GETSTREAM_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: client-web-portal
+                key: getstream.api.key
+          - name: GETSTREAM_APP_ID
+            valueFrom:
+              configMapKeyRef:
+                name: client-web-portal
+                key: getstream.api.id
+          - name: FILESTACK
+            valueFrom:
+              configMapKeyRef:
+                name: client-web-portal
+                key: filestack
