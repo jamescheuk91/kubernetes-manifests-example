@@ -69,5 +69,20 @@ spec:
               configMapKeyRef:
                 name: tu-management
                 key: pgsql.password
+          - name: ALGOLIA_APP_ID 
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: algolia.app.id
+          - name: ALGOLIA_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: algolia.api.key
+          - name: ALGOLIA_INDEX
+            valueFrom:
+              configMapKeyRef:
+                name: tu-management
+                key: algolia.index
 
 
