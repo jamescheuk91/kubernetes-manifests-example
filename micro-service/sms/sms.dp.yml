@@ -49,11 +49,6 @@ spec:
                 key: pgsql.password
           - name: PGSQL_PORT
             value: "5432"
-          - name: TRANSLATOR_SERVICE_ADDRESS 
-            valueFrom:
-              configMapKeyRef:
-                name: sms
-                key: grpc.translator_service_address 
           - name: LAYER_APP_ID
             valueFrom:
               configMapKeyRef:
