@@ -28,10 +28,3 @@ spec:
             backend:
               serviceName: api-gateway 
               servicePort: http 
-    - host: {{ENDPOINT_WEBHOOK}} 
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: api-gateway 
-              servicePort: http 
