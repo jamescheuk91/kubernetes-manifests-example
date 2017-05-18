@@ -12,6 +12,7 @@ if [ "$ENV" == "prod" ]; then
     export ENDPOINT_TBACK_API=tback.1sky.io
     export ENDPOINT_IMPORT_ACTIVEMQ_ADMIN=import-activemq-admin.1sky.io
     export ENDPOINT_API_GW=apigw.1sky.io
+    export ENDPOINT_WEBHOOK=webhook.1sky.io
 elif [ "$ENV" == "kube-system" ]; then
     echo "=== ENV=${ENV} ===" >&2
 
@@ -23,6 +24,7 @@ elif [ "$ENV" == "stag" ]; then
     export ENDPOINT_INTERNAL_PORTAL=stag-api-internal.1sky.io
     export ENDPOINT_TBACK_API=stag-tback.1sky.io
     export ENDPOINT_API_GW=stag-apigw.1sky.io
+    export ENDPOINT_WEBHOOK=stag-webhook.1sky.io
     export ENDPOINT_PROJECT_MANAGEMENT_API=stag-project-management-api.1sky.io
 elif [ "$ENV" == "dev" ]; then
     echo "=== ENV=${ENV} ===" >&2
@@ -32,6 +34,7 @@ elif [ "$ENV" == "dev" ]; then
     export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
     export ENDPOINT_TBACK_API=dev-tback.1sky.io
     export ENDPOINT_API_GW=dev-apigw.1sky.io
+    export ENDPOINT_WEBHOOK=dev-webhook.1sky.io
     export ENDPOINT_SMS=dev-sms.1sky.io
     export ENDPOINT_SMS_API=dev-sms-api.1sky.io
     export ENDPOINT_PROJECT_MANAGEMENT_API=dev-project-management-api.1sky.io
