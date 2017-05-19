@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  labels:
+    app: docker2lm
+  name: docker2lm
+spec:
+  template:
+    metadata:
+      labels:
+        app: docker2lm
+      name: docker2lm
+    spec:
+      containers:
+      - env:
+        - name: DOCKER_LM_CONFIG 
+          valueFrom:
+            configMapKeyRef:
+              name: docker2lm
+              key: config
+        image: quay.io/onesky/docker2lm:0.0.2
+        name: docker2lm
+        resources:
+          requests:
+            cpu: 100m
+            memory: 32Mi
+          limits:
+            cpu: 500m
+            memory: 64Mi
+        volumeMounts:
+        - mountPath: /var/run/docker.sock
+          name: dockerapi
+      imagePullSecrets:
+      - name: quay
+      volumes:
+      - name: dockerapi
+        hostPath:
+          path: /var/run/docker.sock
+
