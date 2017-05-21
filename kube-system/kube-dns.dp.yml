@@ -59,7 +59,7 @@ spec:
         - --domain=cluster.local.
         - --dns-port=10053
         - --config-map=kube-dns
-        - --v=2
+        - --v=0
         env:
           - name: PROMETHEUS_PORT
             value: "10055"
