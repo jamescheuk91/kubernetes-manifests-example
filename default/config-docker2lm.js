@@ -1,8 +1,8 @@
 
 var config = {
-    apikey: 'MRUsANG_Sse68svPjxnrbA',
+    apikey: '{{API_KEY}}',
     custom_field: {
-        k8s_cluster: 'pangu'
+        k8s_cluster: '{{K8S_CLUSTER}}'
     },
     applog: {
         label: {
