@@ -21,6 +21,7 @@ elif [ "$ENV" == "stag" ]; then
     export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=stag-cwp.1sky.io
     export ENDPOINT_CWP_API=stag-api-cwp.1sky.io
+    export ENDPOINT_CWP_API_EXPRESS=stag-api-cwp-express.1sky.io
     export ENDPOINT_INTERNAL_PORTAL=stag-api-internal.1sky.io
     export ENDPOINT_TBACK_API=stag-tback.1sky.io
     export ENDPOINT_API_GW=stag-apigw.1sky.io
@@ -31,6 +32,7 @@ elif [ "$ENV" == "dev" ]; then
     export REPLICAS=1 # dev should use 1 only, right?
     export ENDPOINT_CWP=dev-cwp.1sky.io
     export ENDPOINT_CWP_API=dev-api-cwp.1sky.io
+    export ENDPOINT_CWP_API_EXPRESS=dev-api-cwp-express.1sky.io
     export ENDPOINT_INTERNAL_PORTAL=dev-api-internal.1sky.io
     export ENDPOINT_TBACK_API=dev-tback.1sky.io
     export ENDPOINT_API_GW=dev-apigw.1sky.io
