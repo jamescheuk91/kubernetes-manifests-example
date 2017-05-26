@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{ENV}}
+  name: cwp-api 
+spec:
+  selector:
+    app: cwp-api
+  ports:
+  - name: http 
+    port: 3000
+    targetPort: 3000
+    protocol: TCP
+apiVersion: v1
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cwp-api
+  namespace: {{ENV}}
+spec:
+  rules:
+    - host: {{ENDPOINT_CWP_API_EXPRESS}}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: cwp-api
+              servicePort: http 

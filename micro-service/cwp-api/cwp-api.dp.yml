@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1 
+kind: Deployment 
+metadata:
+  namespace: {{ENV}}
+  name: cwp-api
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: cwp-api
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: cwp-api
+        image: quay.io/onesky/cwp-api:{{IMG_VERSION}}
+        ports:
+        - containerPort: 3000
+          name: http 
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
