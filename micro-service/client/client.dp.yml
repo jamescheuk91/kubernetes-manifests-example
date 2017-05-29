@@ -27,10 +27,8 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
-          - name: PROJECT_SERVICE_ADDRESS
-            value: "project-management.{{ENV}}.svc.cluster.local"
-          - name: LANGUAGE_SERVICE_ADDRESS
-            value: "language.{{ENV}}.svc.cluster.local"
+          - name: JAVA_TOOL_OPTIONS
+            value: "-Xms128m -Xmx500m"
           - name: PGSQL_HOST
             valueFrom:
               configMapKeyRef:
@@ -56,33 +54,27 @@ spec:
               configMapKeyRef:
                 name: client
                 key: pgsql.password
-          - name: CLIENT_AUTH0_CLIENT
+
+          - name: RABBITMQ_HOST
             valueFrom:
               configMapKeyRef:
-                name: client
-                key: web.client_auth0_client
-          - name: CLIENT_AUTH0_CLIENT_ID
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
             valueFrom:
               configMapKeyRef:
-                name: client
-                key: web.client_auth0_client_id
-          - name: CLIENT_AUTH0_CLIENT_SECRET
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: client
-                key: web.client_auth0_client_secret
-          - name: CLIENT_AUTH0_CONNECTION
+                name: rabbitmq
+                key: password
+
+          - name: TYK_HOST
+            value: client-web-portal-api.{{ENV}}.svc.cluster.local
+          - name: TYK_SECRET
             valueFrom:
               configMapKeyRef:
-                name: client
-                key: web.client_auth0_connection
-          - name: SENDGRID_API_KEY
-            valueFrom:
-              configMapKeyRef:
-                name: client
-                key: sendgrid.api-key
-          - name: NEW_USER_JWT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: client
-                key: new_user_jwt_secret
+                name: tyk
+                key: secret
