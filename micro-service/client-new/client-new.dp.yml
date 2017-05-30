@@ -1,0 +1,103 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {{ENV}}
+  name: client-new
+spec:
+  revisionHistoryLimit: 2
+  replicas: {{REPLICAS}}
+  template:
+    metadata:
+      labels:
+        app: client-new
+    spec:
+      imagePullSecrets:
+      - name: quay
+      containers:
+      - name: client-new
+        image: quay.io/onesky/client:{{IMG_VERSION}}
+        ports:
+        - containerPort: 50051
+          name: rpc
+        resources:
+          limits:
+            cpu: 400m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 384Mi
+        env:
+          - name: PROJECT_SERVICE_ADDRESS
+            value: "project-management.{{ENV}}.svc.cluster.local"
+          - name: LANGUAGE_SERVICE_ADDRESS
+            value: "language.{{ENV}}.svc.cluster.local"
+          - name: PGSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: pgsql.host
+          - name: PGSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: pgsql.database
+          - name: PGSQL_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: pgsql.port
+          - name: PGSQL_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: pgsql.username
+          - name: PGSQL_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: pgsql.password
+          - name: CLIENT_AUTH0_CLIENT
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: web.client_auth0_client
+          - name: CLIENT_AUTH0_CLIENT_ID
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: web.client_auth0_client_id
+          - name: CLIENT_AUTH0_CLIENT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: web.client_auth0_client_secret
+          - name: CLIENT_AUTH0_CONNECTION
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: web.client_auth0_connection
+          - name: SENDGRID_API_KEY
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: sendgrid.api-key
+          - name: NEW_USER_JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: client-new
+                key: new_user_jwt_secret
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
