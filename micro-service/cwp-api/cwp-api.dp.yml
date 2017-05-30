@@ -26,3 +26,17 @@ spec:
           requests:
             cpu: 200m
             memory: 384Mi
+        env:
+          - name: PROJECT_SERVICE_ADDRESS
+            value: "project-management.{{ENV}}.svc.cluster.local"
+          - name: LANGUAGE_SERVICE_ADDRESS
+            value: "language.{{ENV}}.svc.cluster.local"
+          - name: CLIENT_SERVICE_ADDRESS
+            value: "client-new.{{ENV}}.svc.cluster.local"
+          - name: DIRECTORY_SERVICE_ADDRESS
+            value: "directory.{{ENV}}.svc.cluster.local"
+          - name: JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: cwp-api
+                key: jwt.secret
