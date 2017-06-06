@@ -27,28 +27,45 @@ spec:
             cpu: 200m
             memory: 384Mi
         env:
+          - name: PROJECT_SERVICE_ADDRESS
+            value: "project-management.{{ENV}}.svc.cluster.local"
           - name: PGSQL_HOST
             valueFrom:
               configMapKeyRef:
-                name: client
+                name: client-new
                 key: pgsql.host
           - name: PGSQL_DATABASE
             valueFrom:
               configMapKeyRef:
-                name: client
+                name: client-new
                 key: pgsql.database
           - name: PGSQL_PORT
             valueFrom:
               configMapKeyRef:
-                name: client
+                name: client-new
                 key: pgsql.port
           - name: PGSQL_USERNAME
             valueFrom:
               configMapKeyRef:
-                name: client
+                name: client-new
                 key: pgsql.username
           - name: PGSQL_PASSWORD
             valueFrom:
               configMapKeyRef:
-                name: client
+                name: client-new
                 key: pgsql.password
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password

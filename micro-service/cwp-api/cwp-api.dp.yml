@@ -40,3 +40,23 @@ spec:
               configMapKeyRef:
                 name: cwp-api
                 key: jwt.secret
+          - name: AUTH0_JWT_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: cwp-api
+                key: auth0.jwt.secret
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: host
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: username
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq
+                key: password
