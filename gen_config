@@ -40,6 +40,7 @@ elif [ "$ENV" == "dev" ]; then
     export ENDPOINT_SMS=dev-sms.1sky.io
     export ENDPOINT_SMS_API=dev-sms-api.1sky.io
     export ENDPOINT_PROJECT_MANAGEMENT_API=dev-project-management-api.1sky.io
+    export ENDPOINT_MOCK_STRING_VIEWER=dev-mock-string-viewer.1sky.io
 elif [ "$ENV" == "default" ]; then
     echo "=== ENV=${ENV} ===" >&2
     export ENDPOINT_USER_JOURNEY=user-journey.1sky.io

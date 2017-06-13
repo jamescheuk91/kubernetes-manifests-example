@@ -18,7 +18,7 @@ spec:
             configMapKeyRef:
               name: docker2lm
               key: config
-        image: quay.io/onesky/docker2lm:0.0.17
+        image: quay.io/onesky/docker2lm:0.0.20
         name: docker2lm
         resources:
           requests:
