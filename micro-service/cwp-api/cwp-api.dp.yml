@@ -40,11 +40,11 @@ spec:
               configMapKeyRef:
                 name: cwp-api
                 key: jwt.secret
-          - name: AUTH0_JWT_SECRET
+          - name: AUTH0_JWT_JWKS_URI
             valueFrom:
               configMapKeyRef:
                 name: cwp-api
-                key: auth0.jwt.secret
+                key: auth0.jwt.jwksuri
           - name: RABBITMQ_HOST
             valueFrom:
               configMapKeyRef:
