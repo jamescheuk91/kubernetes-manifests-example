@@ -49,6 +49,33 @@ spec:
                 key: pgsql.password
           - name: PGSQL_PORT
             value: "5432"
+          - name: NO_RABBITMQ 
+            value: "true"
+          - name: RABBITMQ_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq 
+                key: host
+          - name: RABBITMQ_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq 
+                key: port
+          - name: RABBITMQ_USERNAME
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq 
+                key: username 
+          - name: RABBITMQ_PASSWORD
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq 
+                key: password 
+          - name: RABBITMQ_VHOST
+            valueFrom:
+              configMapKeyRef:
+                name: rabbitmq 
+                key: vhost 
           - name: LAYER_APP_ID
             valueFrom:
               configMapKeyRef:
@@ -59,6 +86,8 @@ spec:
               configMapKeyRef:
                 name: sms
                 key: grpc.layer_token
+          - name: CWP_ORDER_SERVICE_ADDRESS
+            value: "127.0.0.1"
 
 
 
